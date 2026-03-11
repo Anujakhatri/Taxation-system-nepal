@@ -1,10 +1,10 @@
-# Task 3: Calculate tax
-
-# Input salary from user
+# Input salary
 salary = float(input("Enter your monthly salary: "))
 
-# Calculate tax as 10% of salary
-tax = salary * 0.10
-
-# Print the tax amount
-print("Tax amount is:", tax)
+# Calculate tax using if statement
+if salary > 0:
+    tax = salary * 0.10
+    print("Tax amount is:", tax)
+else:
+    tax = 0
+    print("Invalid salary! Tax cannot be calculated.")
