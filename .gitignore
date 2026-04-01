@@ -1,1 +1,8 @@
 .env
+node_modules
+.idea
+.DS_Store
+.vscode
+.next
+.npm
+.yarn
