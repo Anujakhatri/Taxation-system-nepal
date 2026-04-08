@@ -21,7 +21,10 @@
                     <img src="images/नेपाली.gif" alt="नेपाल कर जानकारी" id="logoImageNe" class="brand-logo">
                     <img src="images/nepali.gif" alt="Nepal Tax Info" id="logoImageEn" class="brand-logo"
                         style="display: none;">
-
+                    <div class="logo-text">
+                        <h1 data-en="Nepal Tax Info" data-ne="नेपाल कर जानकारी">नेपाल कर जानकारी</h1>
+                        <p data-en="Tax Info & Calculator" data-ne="कर जानकारी र क्यालकुलेटर">कर जानकारी र क्यालकुलेटर</p>
+                    </div>
                 </div>
             </a>
             <nav>
@@ -30,9 +33,14 @@
                 <a href="#resources" data-en="Tax Law" data-ne="कर कानून">कर कानून</a>
                 <a href="#contact" data-en="Contact" data-ne="सम्पर्क">सम्पर्क</a>
             </nav>
-            <div class="lang-toggle">
-                <button class="lang-btn active" onclick="setLanguage('ne')" id="btnNepali">नेपाली</button>
-                <button class="lang-btn" onclick="setLanguage('en')" id="btnEnglish">EN</button>
+            <div class="header-actions">
+                <div class="lang-toggle">
+                    <button class="lang-btn active" onclick="setLanguage('ne')" id="btnNepali">नेपाली</button>
+                    <button class="lang-btn" onclick="setLanguage('en')" id="btnEnglish">EN</button>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
@@ -97,34 +105,50 @@
     <!-- Info Section -->
     <section class="info-section">
         <div class="info-container">
-            <h2 class="section-title">Current Tax Year Information</h2>
-            <p class="section-subtitle">Important details for FY 2082/83 (2025-2026)</p>
+            <h2 class="section-title" data-en="Current Tax Year Information" data-ne="हालको कर वर्षको जानकारी">Current
+                Tax Year Information</h2>
+            <p class="section-subtitle" data-en="Important details for FY 2082/83 (2025-2026)"
+                data-ne="आ.व. २०८२/८३ (२०२५-२०२६) को लागि महत्त्वपूर्ण विवरणहरू">Important details for FY 2082/83
+                (2025-2026)</p>
 
             <div class="key-facts">
                 <div class="fact-card">
                     <div class="fact-number">5.0 M</div>
-                    <div class="fact-label">VAT Registration Threshold</div>
+                    <div class="fact-label" data-en="VAT Registration Threshold" data-ne="भ्याट दर्ता सीमा">VAT
+                        Registration Threshold</div>
                 </div>
                 <div class="fact-card">
                     <div class="fact-number">500K</div>
-                    <div class="fact-label">Tax-Free Income (Single)</div>
+                    <div class="fact-label" data-en="Tax-Free Income (Single)" data-ne="कर-मुक्त आय (एकल)">Tax-Free
+                        Income (Single)</div>
                 </div>
                 <div class="fact-card">
                     <div class="fact-number">39%</div>
-                    <div class="fact-label">Maximum Tax Rate</div>
+                    <div class="fact-label" data-en="Maximum Tax Rate" data-ne="अधिकतम कर दर">Maximum Tax Rate</div>
                 </div>
                 <div class="fact-card">
                     <div class="fact-number">1%</div>
-                    <div class="fact-label">Social Security Tax</div>
+                    <div class="fact-label" data-en="Social Security Tax" data-ne="सामाजिक सुरक्षा कर">Social Security
+                        Tax</div>
                 </div>
             </div>
 
             <div class="tax-info-box">
-                <h4>💡 Key Information</h4>
-                <p><strong>Tax Year:</strong> July 16, 2082 to July 15, 2083 (Nepali Calendar)</p>
-                <p><strong>Filing Deadline:</strong> Within 3 months after tax year ends (Kartik 15)</p>
-                <p><strong>Latest Update:</strong> Finance Act 2082 effective rules implemented</p>
-                <p style="margin: 0; color: var(--primary-light); font-weight: 600;">
+                <h4 data-en="💡 Key Information" data-ne="💡 मुख्य जानकारी">💡 Key Information</h4>
+                <p><strong data-en="Tax Year:" data-ne="कर वर्ष:">Tax Year:</strong> <span
+                        data-en="July 16, 2082 to July 15, 2083 (Nepali Calendar)"
+                        data-ne="श्रावण १, २०८२ देखि आषाढ मसान्त, २०८३">July 16, 2082 to July 15, 2083 (Nepali
+                        Calendar)</span></p>
+                <p><strong data-en="Filing Deadline:" data-ne="कर बुझाउने अन्तिम मिति:">Filing Deadline:</strong> <span
+                        data-en="Within 3 months after tax year ends (Kartik 15)"
+                        data-ne="कर वर्ष समाप्त भएको ३ महिना भित्र (कार्तिक १५)">Within 3 months after tax year ends
+                        (Kartik 15)</span></p>
+                <p><strong data-en="Latest Update:" data-ne="नवीनतम अद्यावधिक:">Latest Update:</strong> <span
+                        data-en="Finance Act 2082 effective rules implemented" data-ne="आर्थिक ऐन २०८२ लागू">Finance Act
+                        2082 effective rules implemented</span></p>
+                <p style="margin: 0; color: var(--primary-light); font-weight: 600;"
+                    data-en="📌 This is informational only. For official info, visit ird.gov.np"
+                    data-ne="📌 यो जानकारीमूलक मात्र हो। आधिकारिक जानकारीको लागि ird.gov.np मा जानुहोस्">
                     📌 This is informational only. For official info, visit ird.gov.np
                 </p>
             </div>
@@ -134,39 +158,45 @@
     <!-- Features Section -->
     <section class="features">
         <div class="features-container">
-            <h2 class="section-title">Why Choose Us?</h2>
-            <p class="section-subtitle">Everything you need for tax compliance</p>
+            <h2 class="section-title" data-en="Why Choose Us?" data-ne="हामीलाई किन छान्ने त?">Why Choose Us?</h2>
+            <p class="section-subtitle" data-en="Everything you need for tax compliance"
+                data-ne="तपाईंलाई कर अनुपालनको लागि चाहिने सबै कुरा">Everything you need for tax compliance</p>
 
             <div class="features-grid">
                 <div class="feature">
                     <div class="feature-icon">⚡</div>
-                    <h3>Instant Results</h3>
-                    <p>Get accurate calculations in seconds without complex forms or lengthy processes.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Always Updated</h3>
-                    <p>Rates automatically updated with latest government regulations and changes.</p>
+                    <h3 data-en="Instant Results" data-ne="तत्काल नतिजा">Instant Results</h3>
+                    <p data-en="Get accurate calculations in seconds without complex forms or lengthy processes."
+                        data-ne="जटिल फारम वा लामो प्रक्रियाहरू बिना सेकेन्डमा सही गणनाहरू प्राप्त गर्नुहोस्।">Get
+                        accurate calculations in seconds without complex forms or lengthy processes.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">🌐</div>
-                    <h3>Bilingual</h3>
-                    <p>Available in English and Nepali for your convenience and clarity.</p>
+                    <h3 data-en="Bilingual" data-ne="द्विभाषी">Bilingual</h3>
+                    <p data-en="Available in English and Nepali for your convenience and clarity."
+                        data-ne="तपाईंको सुविधा र स्पष्टताको लागि अंग्रेजी र नेपालीमा उपलब्ध छ।">Available in English
+                        and Nepali for your convenience and clarity.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">📱</div>
-                    <h3>Mobile Friendly</h3>
-                    <p>Access from any device - desktop, tablet, or smartphone anytime, anywhere.</p>
+                    <h3 data-en="Mobile Friendly" data-ne="मोबाइल मैत्री">Mobile Friendly</h3>
+                    <p data-en="Access from any device - desktop, tablet, or smartphone anytime, anywhere."
+                        data-ne="कुनै पनि उपकरणबाट पहुँच गर्नुहोस् - डेस्कटप, ट्याब्लेट, वा स्मार्टफोन कुनै पनि समय, कहीं पनि।">
+                        Access from any device - desktop, tablet, or smartphone anytime, anywhere.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">🔒</div>
-                    <h3>100% Secure</h3>
-                    <p>Your data is never stored. All calculations happen locally in your browser.</p>
+                    <h3 data-en="100% Secure" data-ne="१००% सुरक्षित">100% Secure</h3>
+                    <p data-en="Your data is never stored. All calculations happen locally in your browser."
+                        data-ne="तपाईंको डाटा कहिल्यै भण्डार गरिएको छैन। सबै गणनाहरू तपाईंको ब्राउजरमा स्थानीय रूपमा हुन्छन्।">
+                        Your data is never stored. All calculations happen locally in your browser.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">📚</div>
-                    <h3>Expert Resources</h3>
-                    <p>Comprehensive guides, FAQs, and resources for all tax-related questions.</p>
+                    <h3 data-en="Expert Resources" data-ne="विशेषज्ञ स्रोतहरू">Expert Resources</h3>
+                    <p data-en="Comprehensive guides, FAQs, and resources for all tax-related questions."
+                        data-ne="सबै कर सम्बन्धी प्रश्नहरूको लागि विस्तृत निर्देशिकाहरू, FAQs, र स्रोतहरू।">
+                        Comprehensive guides, FAQs, and resources for all tax-related questions.</p>
                 </div>
             </div>
         </div>
@@ -175,9 +205,13 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-section-content">
-            <h2>Ready to Calculate Your Taxes?</h2>
-            <p>Start with our income tax calculator or explore our comprehensive tax guides.</p>
-            <button class="cta-button">Get Started Now</button>
+            <h2 data-en="Ready to Calculate Your Taxes?" data-ne="आफ्नो कर गणना गर्न तयार हुनुहुन्छ?">Ready to Calculate
+                Your Taxes?</h2>
+            <p data-en="Start with our income tax calculator or explore our comprehensive tax guides."
+                data-ne="हाम्रो आयकर क्याल्कुलेटरबाट सुरु गर्नुहोस् वा हाम्रो विस्तृत कर निर्देशिकाहरू अन्वेषण गर्नुहोस्।">
+                Start with our income tax calculator or explore our comprehensive tax guides.</p>
+            <button class="cta-button" data-en="Get Started Now" data-ne="अहिले नै सुरु गर्नुहोस्">Get Started
+                Now</button>
         </div>
     </section>
 
@@ -186,25 +220,25 @@
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Calculators</h4>
-                    <a href="#">Income Tax</a>
-                    <a href="#">Corporate Tax</a>
-                    <a href="#">VAT Calculator</a>
-                    <a href="#">Withholding Tax</a>
+                    <h4 data-en="Calculators" data-ne="क्यालकुलेटरहरू">Calculators</h4>
+                    <a href="#" data-en="Income Tax" data-ne="आयकर">Income Tax</a>
+                    <a href="#" data-en="Corporate Tax" data-ne="संस्थागत कर">Corporate Tax</a>
+                    <a href="#" data-en="VAT Calculator" data-ne="भ्याट क्यालकुलेटर">VAT Calculator</a>
+                    <a href="#" data-en="Withholding Tax" data-ne="अग्रिम कर कट्टी">Withholding Tax</a>
                 </div>
                 <div class="footer-section">
-                    <h4>Resources</h4>
-                    <a href="#">Tax Guides</a>
-                    <a href="#">Deductions</a>
-                    <a href="#">FAQs</a>
-                    <a href="#">Glossary</a>
+                    <h4 data-en="Resources" data-ne="स्रोतहरू">Resources</h4>
+                    <a href="#" data-en="Tax Guides" data-ne="कर निर्देशिकाहरू">Tax Guides</a>
+                    <a href="#" data-en="Deductions" data-ne="कट्टाहरू">Deductions</a>
+                    <a href="#" data-en="FAQs" data-ne="प्राय: सोधिने प्रश्नहरू">FAQs</a>
+                    <a href="#" data-en="Glossary" data-ne="शब्दावली">Glossary</a>
                 </div>
                 <div class="footer-section">
-                    <h4>Legal</h4>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Use</a>
-                    <a href="#">Disclaimer</a>
-                    <a href="#">Contact Us</a>
+                    <h4 data-en="Legal" data-ne="कानूनी">Legal</h4>
+                    <a href="#" data-en="Privacy Policy" data-ne="गोपनीयता नीति">Privacy Policy</a>
+                    <a href="#" data-en="Terms of Use" data-ne="प्रयोगका सर्तहरू">Terms of Use</a>
+                    <a href="#" data-en="Disclaimer" data-ne="अस्वीकरण">Disclaimer</a>
+                    <a href="#" data-en="Contact Us" data-ne="हामीलाई सम्पर्क गर्नुहोस्">Contact Us</a>
                 </div>
                 <div class="footer-section">
                     <h4 data-en="Government Links" data-ne="सरकारी लिङ्कहरू">सरकारी लिङ्कहरू</h4>
@@ -216,9 +250,12 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Nepal Tax Information. Not affiliated with IRD. <a href="#"
-                        style="color: #bbb; text-decoration: none;">Privacy</a> | <a href="#"
-                        style="color: #bbb; text-decoration: none;">Terms</a></p>
+                <p><span data-en="&copy; 2025 Nepal Tax Information. Not affiliated with IRD."
+                        data-ne="&copy; २०२५ नेपाल कर जानकारी। आन्तरिक राजस्व विभागसँग सम्बद्ध छैन।">&copy; 2025 Nepal
+                        Tax Information. Not affiliated with IRD.</span> <a href="#"
+                        style="color: #bbb; text-decoration: none;" data-en="Privacy" data-ne="गोपनीयता">Privacy</a> |
+                    <a href="#" style="color: #bbb; text-decoration: none;" data-en="Terms" data-ne="सर्तहरू">Terms</a>
+                </p>
             </div>
         </div>
     </footer>

@@ -65,5 +65,21 @@
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
                 }
+                
+                // Close mobile menu if open after clicking a link
+                const nav = document.querySelector('header nav');
+                if (nav && nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                }
             });
         });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('header nav');
+        
+        if (mobileMenuBtn && nav) {
+            mobileMenuBtn.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+        }
