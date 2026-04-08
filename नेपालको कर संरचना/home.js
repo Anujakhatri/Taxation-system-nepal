@@ -8,6 +8,34 @@
                 const lang = this.textContent.trim();
                 localStorage.setItem('preferredLanguage', lang);
                 
+                const isEnglish = (lang === 'EN');
+                
+                // Switch logos based on language
+                const logoNe = document.getElementById('logoImageNe');
+                const logoEn = document.getElementById('logoImageEn');
+                
+                if (logoNe && logoEn) {
+                    if (isEnglish) {
+                        logoNe.style.display = 'none';
+                        logoEn.style.display = 'block';
+                    } else {
+                        logoNe.style.display = 'block';
+                        logoEn.style.display = 'none';
+                    }
+                }
+                
+                // Apply Devanagari font conditionally
+                if (isEnglish) {
+                    document.body.classList.remove('nepali-font');
+                } else {
+                    document.body.classList.add('nepali-font');
+                }
+                
+                // Update all bilingual content
+                document.querySelectorAll('[data-en][data-ne]').forEach(el => {
+                    el.textContent = isEnglish ? el.getAttribute('data-en') : el.getAttribute('data-ne');
+                });
+                
                 console.log('Language switched to:', lang);
             });
         });

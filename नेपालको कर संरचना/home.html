@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nepal Tax Calculator - Instant Tax Computation</title>
+    <title>नेपाल कर जानकारी - Tax Information Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="home.css">
-    
+
 </head>
+
 <body>
     <!-- Header -->
     <header>
         <div class="header-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">₨</div>
-                <div class="logo-text">
-                    <h1>Nepal Tax Info</h1>
-                    <p>नेपाल कर जानकारी</p>
+            <a href="#" class="logo" id="logoLink">
+                <div class="logo-wrapper">
+                    <img src="images/नेपाली.gif" alt="नेपाल कर जानकारी" id="logoImageNe" class="brand-logo">
+                    <img src="images/nepali.gif" alt="Nepal Tax Info" id="logoImageEn" class="brand-logo"
+                        style="display: none;">
+
                 </div>
             </a>
             <nav>
-                <a href="#calculators">Calculators</a>
-                <a href="#guides">Guides</a>
-                <a href="#resources">Resources</a>
-                <a href="#contact">Contact</a>
+                <a href="#calculators" data-en="Calculators" data-ne="क्यालकुलेटर">क्यालकुलेटर</a>
+                <a href="#guides" data-en="Tax Guide" data-ne="कर गाइड">कर गाइड</a>
+                <a href="#resources" data-en="Tax Law" data-ne="कर कानून">कर कानून</a>
+                <a href="#contact" data-en="Contact" data-ne="सम्पर्क">सम्पर्क</a>
             </nav>
             <div class="lang-toggle">
-                <button class="lang-btn active">EN</button>
-                <button class="lang-btn">नेपाली</button>
+                <button class="lang-btn active" onclick="setLanguage('ne')" id="btnNepali">नेपाली</button>
+                <button class="lang-btn" onclick="setLanguage('en')" id="btnEnglish">EN</button>
             </div>
         </div>
     </header>
@@ -35,10 +40,15 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Calculate Your Nepal Taxes Instantly</h1>
-            <p>Free, accurate tax computation for individuals and businesses. Updated to FY 2082/83 rates.</p>
-            <button class="cta-button">Start Calculator</button>
-            <button class="cta-button secondary">Learn More</button>
+            <h1 data-en="Understand Nepal's Taxation System" data-ne="नेपालको कर संरचना जानुहोस्">नेपालको कर संरचना
+                जान्नुहोस्</h1>
+            <div style="margin-bottom: 2rem; font-style: italic; opacity: 0.9;"
+                data-en="Informational platform based on Nepal tax laws."
+                data-ne="नेपालको कर कानूनमा आधारित जानकारीमूलक प्लेटफर्म।">नेपालको कर कानूनमा आधारित जानकारीमूलक
+                प्लेटफर्म।</div>
+            <button class="cta-button" data-en="Calculate Tax" data-ne="कर गणना गर्नुहोस्">कर गणना गर्नुहोस्</button>
+            <button class="cta-button secondary" data-en="View Tax Guide" data-ne="कर गाइड हेर्नुहोस्">कर गाइड
+                हेर्नुहोस्</button>
         </div>
     </section>
 
@@ -47,21 +57,39 @@
         <div class="cards-container">
             <div class="card">
                 <div class="card-icon">🧮</div>
-                <h3>Income Tax Calculator</h3>
-                <p>Compute your tax liability instantly with our advanced calculator. Supports all deductions and rebates.</p>
-                <a href="#" class="card-link">Calculate Now →</a>
+                <h3 data-en="Income Tax Calculator" data-ne="आयकर क्याल्कुलेटर">आयकर क्याल्कुलेटर</h3>
+                <p data-en="Compute your personal tax liability instantly. Supports all deductions and rebates."
+                    data-ne="तपाईंको व्यक्तिगत कर दायित्व तुरुन्तै गणना गर्नुहोस्। सबै कट्टा र छुटहरूलाई समर्थन गर्दछ।">
+                    तपाईंको व्यक्तिगत कर दायित्व तुरुन्तै गणना गर्नुहोस्। सबै कट्टा र छुटहरूलाई समर्थन गर्दछ।</p>
+                <a href="#" class="card-link" data-en="Calculate Now →" data-ne="अहिले गणना गर्नुहोस् →">अहिले गणना
+                    गर्नुहोस् →</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏢</div>
+                <h3 data-en="Corporate Tax Calculator" data-ne="संस्थागत कर क्याल्कुलेटर">संस्थागत कर क्याल्कुलेटर</h3>
+                <p data-en="Calculate corporate taxes with applicable rates for different types of industries."
+                    data-ne="विभिन्न प्रकारका उद्योग र व्यवसायहरूको लागि लागू दरहरूको साथ संस्थागत कर गणना गर्नुहोस्।">
+                    विभिन्न प्रकारका उद्योग र व्यवसायहरूको लागि लागू दरहरूको साथ संस्थागत कर गणना गर्नुहोस्।</p>
+                <a href="#" class="card-link" data-en="Calculate Now →" data-ne="अहिले गणना गर्नुहोस् →">अहिले गणना
+                    गर्नुहोस् →</a>
             </div>
             <div class="card">
                 <div class="card-icon">📊</div>
-                <h3>Tax Slabs & Rates</h3>
-                <p>View current tax brackets, rates, and thresholds for 2082/83. Reference for all income types.</p>
-                <a href="#" class="card-link">View Rates →</a>
+                <h3 data-en="VAT Information" data-ne="भ्याट सम्बन्धी जानकारी">भ्याट सम्बन्धी जानकारी</h3>
+                <p data-en="Details about Value Added Tax limits, registration processes, and compliance requirements."
+                    data-ne="मूल्य अभिवृद्धि कर (VAT) सीमाहरू, दर्ता प्रक्रियाहरू, र अनुपालन आवश्यकताहरू बारे विवरणहरू।">
+                    मूल्य अभिवृद्धि कर (VAT) सीमाहरू, दर्ता प्रक्रियाहरू, र अनुपालन आवश्यकताहरू बारे विवरणहरू।</p>
+                <a href="#" class="card-link" data-en="View Info →" data-ne="जानकारी हेर्नुहोस् →">जानकारी हेर्नुहोस्
+                    →</a>
             </div>
             <div class="card">
-                <div class="card-icon">❓</div>
-                <h3>FAQs & Guides</h3>
-                <p>Comprehensive guides on deductions, rebates, and special cases. Expert answers to common questions.</p>
-                <a href="#" class="card-link">Browse Guides →</a>
+                <div class="card-icon">📚</div>
+                <h3 data-en="Tax Guides" data-ne="कर निर्देशिका">कर निर्देशिका</h3>
+                <p data-en="Comprehensive guides on filing taxes, understanding tax brackets, and utilizing exemptions."
+                    data-ne="कर बुझाउने, कर कोष्ठकहरू बुझ्ने, र छुटहरू उपयोग गर्ने बारे विस्तृत निर्देशिकाहरू।">कर
+                    बुझाउने, कर कोष्ठकहरू बुझ्ने, र छुटहरू उपयोग गर्ने बारे विस्तृत निर्देशिकाहरू।</p>
+                <a href="#" class="card-link" data-en="Browse Guides →"
+                    data-ne="निर्देशिकाहरू ब्राउज गर्नुहोस् →">निर्देशिकाहरू ब्राउज गर्नुहोस् →</a>
             </div>
         </div>
     </section>
@@ -179,18 +207,22 @@
                     <a href="#">Contact Us</a>
                 </div>
                 <div class="footer-section">
-                    <h4>About</h4>
-                    <a href="#">About Us</a>
-                    <a href="#">Blog</a>
-                    <a href="#">Updates</a>
-                    <a href="#">IRD Links</a>
+                    <h4 data-en="Government Links" data-ne="सरकारी लिङ्कहरू">सरकारी लिङ्कहरू</h4>
+                    <a href="https://ird.gov.np/" target="_blank" data-en="Inland Revenue Department"
+                        data-ne="आन्तरिक राजस्व विभाग">आन्तरिक राजस्व विभाग</a>
+                    <a href="https://mof.gov.np/" target="_blank" data-en="Ministry of Finance"
+                        data-ne="अर्थ मन्त्रालय">अर्थ मन्त्रालय</a>
+                    <a href="#" data-en="Nepal Tax Act" data-ne="नेपाल कर ऐन">नेपाल कर ऐन</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Nepal Tax Information. Not affiliated with IRD. <a href="#" style="color: #bbb; text-decoration: none;">Privacy</a> | <a href="#" style="color: #bbb; text-decoration: none;">Terms</a></p>
+                <p>&copy; 2025 Nepal Tax Information. Not affiliated with IRD. <a href="#"
+                        style="color: #bbb; text-decoration: none;">Privacy</a> | <a href="#"
+                        style="color: #bbb; text-decoration: none;">Terms</a></p>
             </div>
         </div>
     </footer>
-<script src="home.js"></script>
+    <script src="home.js"></script>
 </body>
+
 </html>

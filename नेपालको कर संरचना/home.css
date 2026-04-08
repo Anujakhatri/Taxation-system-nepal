@@ -5,18 +5,18 @@
         }
 
         :root {
-            --primary-dark: #0d3d5c;
-            --primary-light: #1a5f7a;
-            --primary-lighter: #2a7f9e;
-            --accent-teal: #16a085;
-            --accent-amber: #d4a373;
-            --bg-light: #f8f6f1;
+            --primary-dark: #002D72;
+            --primary-light: #003893;
+            --primary-lighter: #0050b3;
+            --accent-teal: #d52027;
+            --accent-amber: #e5a913;
+            --bg-light: #f4f6f9;
             --bg-surface: #ffffff;
-            --text-dark: #1a1a1a;
-            --text-muted: #666666;
-            --border-color: #e0dcd6;
-            --success: #27ae60;
-            --warning: #e67e22;
+            --text-dark: #333333;
+            --text-muted: #555555;
+            --border-color: #e2e8f0;
+            --success: #28a745;
+            --warning: #ffc107;
         }
 
         body {
@@ -27,9 +27,13 @@
             letter-spacing: 0.3px;
         }
 
+        body.nepali-font {
+            font-family: 'Noto Sans Devanagari', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         /* Header & Navigation */
         header {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background-color: var(--primary-dark);
             color: white;
             padding: 1rem 0;
             position: sticky;
@@ -50,35 +54,37 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 1rem;
             text-decoration: none;
             color: white;
+            margin-left: -10px;
+            /* Shift slightly to the left */
+            padding: 5px 10px;
+            /* Add small padding */
         }
 
         .logo-icon {
             width: 44px;
             height: 44px;
             background: var(--accent-teal);
-            border-radius: 8px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
             font-weight: bold;
-            box-shadow: 0 4px 12px rgba(22, 160, 133, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .logo-text h1 {
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
         }
 
-        .logo-text p {
-            font-size: 12px;
-            opacity: 0.9;
-            font-weight: 300;
+        .brand-logo {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 50%;
         }
 
         nav {
@@ -139,12 +145,12 @@
         .lang-btn.active {
             background: var(--accent-teal);
             color: white;
-            box-shadow: 0 2px 8px rgba(22, 160, 133, 0.3);
+            box-shadow: 0 2px 8px rgba(213, 32, 39, 0.3);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 50%, var(--accent-teal) 100%);
+            background-color: var(--primary-light);
             color: white;
             padding: 5rem 2rem;
             text-align: center;
@@ -159,9 +165,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(22, 160, 133, 0.1) 0%, transparent 50%);
+            background: none;
             pointer-events: none;
         }
 
@@ -199,7 +203,7 @@
             font-weight: 600;
             font-size: 16px;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 24px rgba(22, 160, 133, 0.3);
+            box-shadow: 0 8px 24px rgba(213, 32, 39, 0.3);
             border: 2px solid transparent;
             cursor: pointer;
             border: none;
@@ -207,8 +211,8 @@
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(22, 160, 133, 0.4);
-            background: #148c6f;
+            box-shadow: 0 12px 32px rgba(213, 32, 39, 0.4);
+            background: #b51a20;
         }
 
         .cta-button.secondary {
@@ -266,7 +270,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary-light), var(--accent-teal));
+            background-color: var(--accent-teal);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.3s ease;
@@ -284,7 +288,7 @@
         .card-icon {
             width: 56px;
             height: 56px;
-            background: linear-gradient(135deg, var(--primary-light), var(--accent-teal));
+            background-color: var(--primary-light);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -357,7 +361,7 @@
         }
 
         .fact-card {
-            background: linear-gradient(135deg, rgba(26, 95, 122, 0.05) 0%, rgba(22, 160, 133, 0.05) 100%);
+            background-color: var(--bg-surface);
             padding: 2rem;
             border-radius: 10px;
             border: 1px solid var(--border-color);
@@ -379,7 +383,7 @@
 
         /* Features Section */
         .features {
-            background: linear-gradient(135deg, var(--bg-light) 0%, #f0ebe5 100%);
+            background-color: var(--bg-light);
             padding: 4rem 2rem;
         }
 
@@ -449,7 +453,7 @@
 
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background-color: var(--primary-dark);
             color: white;
             padding: 4rem 2rem;
             text-align: center;
@@ -525,6 +529,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
