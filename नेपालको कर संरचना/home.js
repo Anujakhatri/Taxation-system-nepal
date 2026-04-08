@@ -33,7 +33,7 @@
                 
                 // Update all bilingual content
                 document.querySelectorAll('[data-en][data-ne]').forEach(el => {
-                    el.textContent = isEnglish ? el.getAttribute('data-en') : el.getAttribute('data-ne');
+                    el.innerHTML = isEnglish ? el.getAttribute('data-en') : el.getAttribute('data-ne');
                 });
                 
                 console.log('Language switched to:', lang);
