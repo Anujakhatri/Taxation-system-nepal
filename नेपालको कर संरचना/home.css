@@ -20,7 +20,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Noto Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-light);
             color: var(--text-dark);
             line-height: 1.6;
@@ -28,7 +28,7 @@
         }
 
         body.nepali-font {
-            font-family: 'Noto Sans Devanagari', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Noto Sans Devanagari', 'Noto Sans', sans-serif;
         }
 
         /* Header & Navigation */
@@ -56,10 +56,7 @@
             align-items: center;
             text-decoration: none;
             color: white;
-            margin-left: -100px;
-            /* Shift slightly to the left */
             padding: 5px 10px;
-            /* Add small padding */
         }
 
         .logo-icon {
@@ -214,7 +211,8 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            /* min-height: 2.4em; */
+            font-size: clamp(2.5rem, 4vw, 3rem);
             font-weight: 800;
             margin-bottom: 1rem;
             line-height: 1.2;
@@ -242,7 +240,7 @@
             box-shadow: 0 8px 24px rgba(213, 32, 39, 0.3);
             border: 2px solid transparent;
             cursor: pointer;
-            border: none;
+            min-width: 200px;
         }
 
         .cta-button:hover {
@@ -274,7 +272,7 @@
         /* Quick Access Cards */
         .quick-access {
             max-width: 1200px;
-            margin: -4rem auto 0;
+            margin: 4rem auto 0;
             padding: 0 2rem;
             position: relative;
             z-index: 10;
@@ -584,9 +582,7 @@
                 position: relative;
             }
 
-            .logo {
-                margin-left: 0;
-            }
+
 
             .mobile-menu-btn {
                 display: block;
@@ -601,7 +597,7 @@
                 width: 100%;
                 background: var(--primary-dark);
                 padding: 1rem 0;
-                box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
                 z-index: 1000;
                 gap: 0;
             }
@@ -622,7 +618,8 @@
             }
 
             nav a::after {
-                display: none; /* Hide underline effect on mobile */
+                display: none;
+                /* Hide underline effect on mobile */
             }
 
             .hero {
@@ -639,7 +636,7 @@
 
             .quick-access {
                 padding: 0 1rem;
-                margin-top: -2rem;
+                margin-top: 2rem;
             }
 
             .cards-container {
@@ -651,8 +648,18 @@
                 padding: 1.5rem;
             }
 
-            .cta-button.secondary {
-                display: block;
+            .cta-button {
+                display: inline-block;
+                width: auto;
+                margin: 0.5rem !important;
+                padding: 0.8rem 1.5rem;
+                /* Slightly more compact padding for mobile */
+            }
+
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
 
             .section-title {
@@ -666,7 +673,8 @@
 
         @media (max-width: 480px) {
             .header-container {
-                flex-direction: row; /* keep burger and logo adjacent */
+                flex-direction: row;
+                /* keep burger and logo adjacent */
                 justify-content: space-between;
                 gap: 0;
             }
@@ -674,6 +682,7 @@
             .lang-toggle {
                 padding: 0.3rem;
             }
+
             .lang-btn {
                 padding: 0.4rem 0.6rem;
             }
