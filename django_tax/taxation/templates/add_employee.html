@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee - Nepal Tax System</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+
+<body>
+
+<!-- Header -->
+<header>
+    <div class="header-container">
+        <a href="{% url 'home' %}" class="logo">
+            <div class="logo-icon">₨</div>
+            <div class="logo-text">
+                <h1>Nepal Tax Info</h1>
+                <p>नेपाल कर जानकारी</p>
+            </div>
+        </a>
+    </div>
+</header>
+
+<!-- FORM SECTION -->
+<section class="hero" style="padding: 3rem 2rem;">
+    <div class="hero-content" style="max-width: 500px;">
+
+        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); color:black;">
+
+            <h2 style="text-align:center; margin-bottom: 1.5rem;">Add Employee</h2>
+
+            <!-- SUCCESS MESSAGE -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div style="background:#27ae60; color:white; padding:10px; border-radius:6px; margin-bottom:1rem; text-align:center;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Salary</label>
+                    <input type="number" name="salary" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Allowance</label>
+                    <input type="number" name="allowance" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Deductions</label>
+                    <input type="number" name="deductions" required>
+                </div>
+
+                <div class="form-group">
+                    <label>PAN Number</label>
+                    <input type="text" name="pan" required>
+                </div>
+
+                <button type="submit" class="cta-button" style="width:100%; margin-top:1rem;">
+                    Add Employee
+                </button>
+            </form>
+
+            <div style="text-align:center; margin-top:1rem;">
+                <a href="{% url 'home' %}" class="card-link">← Back to Home</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
