@@ -7,3 +7,5 @@ node_modules
 .npm
 .yarn
 .__pycache__
+.venv
+.db.sqlite3
