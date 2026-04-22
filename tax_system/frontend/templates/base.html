@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}नेपाल कर जानकारी{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Global component styles — always loaded -->
+    <link rel="stylesheet" href="{% static 'components/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'components/footer.css' %}">
+
+    <!-- Page-specific styles -->
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+
+    {% include 'components/navbar.html' %}
+
+    {% block content %}{% endblock %}
+
+    {% include 'components/footer.html' %}
+
+    <!-- Global component scripts — always loaded -->
+    <script src="{% static 'components/navbar.js' %}"></script>
+
+    <!-- Page-specific scripts -->
+    {% block scripts %}{% endblock %}
+
+</body>
+
+</html>

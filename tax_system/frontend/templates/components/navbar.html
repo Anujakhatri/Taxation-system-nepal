@@ -1,0 +1,31 @@
+{% load static %}
+<header>
+    <div class="header-container">
+        <a href="#" class="logo" id="logoLink">
+            <div class="logo-wrapper">
+                <img src="{% static 'images/नेपाली.gif' %}" alt="नेपाल कर जानकारी" id="logoImageNe" class="brand-logo">
+                <img src="{% static 'images/nepali.gif' %}" alt="Nepal Tax Info" id="logoImageEn" class="brand-logo"
+                    style="display: none;">
+                <div class="logo-text">
+                    <h1 data-en="Nepal Tax Info" data-ne="नेपाल कर जानकारी">नेपाल कर जानकारी</h1>
+                    <p data-en="Tax Info & Calculator" data-ne="कर जानकारी र क्यालकुलेटर">कर जानकारी र क्यालकुलेटर</p>
+                </div>
+            </div>
+        </a>
+        <nav>
+            <a href="#calculators" data-en="Calculators" data-ne="क्यालकुलेटर">क्यालकुलेटर</a>
+            <a href="#guides" data-en="Tax Guide" data-ne="कर गाइड">कर गाइड</a>
+            <a href="#resources" data-en="Tax Law" data-ne="कर कानून">कर कानून</a>
+            <a href="#contact" data-en="Contact" data-ne="सम्पर्क">सम्पर्क</a>
+        </nav>
+        <div class="header-actions">
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLanguage('ne')" id="btnNepali">नेपाली</button>
+                <button class="lang-btn" onclick="setLanguage('en')" id="btnEnglish">EN</button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</header>

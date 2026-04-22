@@ -5,7 +5,7 @@ Welcome to the **Taxation System Nepal** project! This repository contains a com
 ## 👥 Meet the Team
 This project is proudly developed by:
 
-**Team Name: [Coderush]**
+**Team Name: [A4]**
 
 | Member Name | GitHub |
 | :--- | :--- |
