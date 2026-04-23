@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} VAT Calculator - Tax Information Portal {% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'home.css' %}">
+<link rel="stylesheet" href="{% static 'vat.css' %}">
+<style>
+    .tds-btn-nav {
+        margin-top: 1.5rem;
+        width: 100%;
+        max-width: 250px;
+        padding: 12px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+    .tds-btn-nav:hover {
+        background: #0056b3;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="tax-container">
+    <h2 data-en="VAT Calculator" data-ne="भ्याट क्याल्कुलेटर">
+        VAT Information
+    </h2>
+    <p style="text-align:center;">Coming soon...</p>
+
+    <div style="text-align:center; margin-top: 2rem;">
+        <a href="{% url 'tds' %}" class="tds-btn-nav" id="go-to-tds">
+            Go to TDS Calculator
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

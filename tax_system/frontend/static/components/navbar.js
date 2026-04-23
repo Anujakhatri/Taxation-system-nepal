@@ -57,3 +57,18 @@ function setLanguage(lang) {
         setLanguage(saved);
     }
 }());
+
+// ── Smooth scroll for /# links if already on the homepage ──
+document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        if (window.location.pathname === '/') {
+            const hash = this.getAttribute('href').substring(1); // gets '#...'
+            const target = document.querySelector(hash);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+                history.pushState(null, null, hash);
+            }
+        }
+    });
+});

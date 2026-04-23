@@ -1,0 +1,43 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'components/tds_form.css' %}">
+<div class="tds-container" id="tds-section">
+    <h2 data-en="TDS Calculator" data-ne="टीडीएस क्याल्कुलेटर">
+        TDS Calculator
+    </h2>
+
+    <form method="POST" action="{% url 'tds' %}">
+        {% csrf_token %}
+
+        <!-- Payment Type -->
+        <label data-en="Payment Type" data-ne="भुक्तानी प्रकार">Payment Type</label>
+        <select name="type" required>
+            <option value="salary">Salary</option>
+            <option value="rent">Rent</option>
+            <option value="service">Service</option>
+            <option value="dividend">Dividend</option>
+            <option value="interest">Interest</option>
+        </select>
+
+        <!-- Amount -->
+        <label data-en="Amount" data-ne="रकम">Amount</label>
+        <input type="number" name="amount" required placeholder="Enter amount">
+
+        <!-- Button -->
+        <button type="submit" class="btn" data-en="Calculate TDS" data-ne="टीडीएस गणना गर्नुहोस्">
+            Calculate TDS
+        </button>
+    </form>
+
+    <!-- Result -->
+    {% if result %}
+    <div class="result-box">
+        <h3 data-en="Result" data-ne="नतिजा">Result</h3>
+        <p><b data-en="Type:" data-ne="प्रकार:">Type:</b> {{ result.type }}</p>
+        <p><b data-en="Amount:" data-ne="रकम:">Amount:</b> {{ result.amount }}</p>
+        <p><b data-en="TDS Rate:" data-ne="टीडीएस दर:">TDS Rate:</b> {{ result.rate }}%</p>
+        <p><b data-en="TDS Amount:" data-ne="कट्टा रकम:">TDS Amount:</b> {{ result.tds }}</p>
+        <p><b data-en="Net Payment:" data-ne="शुद्ध भुक्तानी:">Net Payment:</b> {{ result.net }}</p>
+    </div>
+    {% endif %}
+</div>

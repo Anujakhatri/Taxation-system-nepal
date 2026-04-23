@@ -79,7 +79,7 @@ body.nepali-font {
     font-weight: 300;
 }
 
-.cta-button {
+.cal-button {
     display: inline-block;
     background: var(--accent-teal);
     color: white;
@@ -95,20 +95,20 @@ body.nepali-font {
     min-width: 200px;
 }
 
-.cta-button:hover {
+.cal-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 32px rgba(213, 32, 39, 0.4);
     background: #b51a20;
 }
 
-.cta-button.secondary {
+.cal-button.secondary {
     background: transparent;
     color: white;
     border: 2px solid white;
     margin-left: 1rem;
 }
 
-.cta-button.secondary:hover {
+.cal-button.secondary:hover {
     background: rgba(255, 255, 255, 0.1);
     box-shadow: none;
 }
@@ -273,26 +273,26 @@ body.nepali-font {
 
 /* CTA SECTION */
 
-.cta-section {
+.cal-section {
     background-color: var(--primary-dark);
     color: white;
     padding: 4rem 2rem;
     text-align: center;
 }
 
-.cta-section-content {
+.cal-section-content {
     max-width: 600px;
     margin: 0 auto;
 }
 
-.cta-section h2 {
+.cal-section h2 {
     font-size: 2.5rem;
     font-weight: 800;
     margin-bottom: 1rem;
     line-height: 1.2;
 }
 
-.cta-section p {
+.cal-section p {
     font-size: 16px;
     margin-bottom: 2rem;
     opacity: 0.95;
@@ -345,14 +345,14 @@ body.nepali-font {
         padding: 1.5rem;
     }
 
-    .cta-button {
+    .cal-button {
         display: inline-block;
         width: auto;
         margin: 0.5rem !important;
         padding: 0.8rem 1.5rem;
     }
 
-    .cta-button.secondary {
+    .cal-button.secondary {
         margin-left: 0;
         margin-top: 1rem;
         display: block;
@@ -368,7 +368,7 @@ body.nepali-font {
         font-size: 2rem;
     }
 
-    .cta-section h2 {
+    .cal-section h2 {
         font-size: 1.8rem;
     }
 }
@@ -390,7 +390,9 @@ body.nepali-font {
         font-size: 1.8rem;
     }
 
-    .cta-section h2 {
+    .cal-section h2 {
         font-size: 1.5rem;
     }
 }
+html { scroll-behavior: smooth; }
+

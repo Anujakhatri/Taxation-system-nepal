@@ -5,105 +5,13 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'home.css' %}">
-<style>
-    .tds-container {
-        max-width: 600px;
-        margin: 3rem auto;
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
+<link rel="stylesheet" href="{% static 'components/tds_form.css' %}">
 
-    .tds-container h2 {
-        text-align: center;
-        margin-bottom: 1.5rem;
-    }
 
-    label {
-        display: block;
-        margin-top: 1rem;
-        font-weight: bold;
-    }
-
-    select, input {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-    }
-
-    .btn {
-        margin-top: 1.5rem;
-        width: 100%;
-        padding: 12px;
-        background: #007bff;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-    .btn:hover {
-        background: #0056b3;
-    }
-
-    .result-box {
-        margin-top: 2rem;
-        padding: 1rem;
-        background: #f4f4f4;
-        border-radius: 8px;
-    }
-</style>
 {% endblock %}
 
 {% block content %}
 
-<div class="tds-container">
-
-    <h2 data-en="TDS Calculator" data-ne="टीडीएस क्याल्कुलेटर">
-        TDS Calculator
-    </h2>
-
-    <form method="POST">
-        {% csrf_token %}
-
-        <!-- Payment Type -->
-        <label data-en="Payment Type" data-ne="भुक्तानी प्रकार">Payment Type</label>
-        <select name="type" required>
-            <option value="salary">Salary</option>
-            <option value="rent">Rent</option>
-            <option value="service">Service</option>
-            <option value="dividend">Dividend</option>
-            <option value="interest">Interest</option>
-        </select>
-
-        <!-- Amount -->
-        <label data-en="Amount" data-ne="रकम">Amount</label>
-        <input type="number" name="amount" required placeholder="Enter amount">
-
-        <!-- Button -->
-        <button type="submit" class="btn"
-            data-en="Calculate TDS" data-ne="टीडीएस गणना गर्नुहोस्">
-            Calculate TDS
-        </button>
-    </form>
-
-    <!-- Result -->
-    {% if result %}
-    <div class="result-box">
-        <h3 data-en="Result" data-ne="नतिजा">Result</h3>
-
-        <p><b data-en="Type:" data-ne="प्रकार:">Type:</b> {{ result.type }}</p>
-        <p><b data-en="Amount:" data-ne="रकम:">Amount:</b> {{ result.amount }}</p>
-        <p><b data-en="TDS Rate:" data-ne="टीडीएस दर:">TDS Rate:</b> {{ result.rate }}%</p>
-        <p><b data-en="TDS Amount:" data-ne="कट्टा रकम:">TDS Amount:</b> {{ result.tds }}</p>
-        <p><b data-en="Net Payment:" data-ne="शुद्ध भुक्तानी:">Net Payment:</b> {{ result.net }}</p>
-    </div>
-    {% endif %}
-
-</div>
+{% include 'components/tds_form.html' %}
 
 {% endblock %}
