@@ -40,3 +40,18 @@ def calculate_tds(request):
         }
 
     return render(request, "tds.html", {"result": result})
+
+def income_tax(request):
+    return render(request, "income_tax.html")
+
+def corporate_tax(request):
+    return render(request, "corporate_tax.html")
+
+def vat_calculator(request):
+    return render(request, "vat_calculator.html")
+
+def vat_view(request):
+    return render(request, "vat.html")
+
+def contact(request):
+    return render(request, "contact.html")

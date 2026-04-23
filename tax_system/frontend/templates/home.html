@@ -19,14 +19,15 @@
             data-ne="नेपालको कर कानूनमा आधारित जानकारीमूलक प्लेटफर्म।">नेपालको कर कानूनमा आधारित जानकारीमूलक
             प्लेटफर्म।
         </div>
-        <button class="cta-button" data-en="Calculate Tax" data-ne="कर गणना गर्नुहोस्">कर गणना गर्नुहोस्</button>
-        <button class="cta-button secondary" data-en="View Tax Guide" data-ne="कर गाइड हेर्नुहोस्">कर गाइड
+        <button id="calc-tax-btn" class="cal-button" data-en="Calculate Tax" data-ne="कर गणना गर्नुहोस्">कर गणना
+            गर्नुहोस्</button>
+        <button class="cal-button secondary" data-en="View Tax Guide" data-ne="कर गाइड हेर्नुहोस्">कर गाइड
             हेर्नुहोस्</button>
     </div>
 </section>
 
 <!-- Quick Access Cards -->
-<section class="quick-access">
+<section id="quick-access-section" class="quick-access">
     <div class="cards-container">
         <div class="card">
             <div class="card-icon"><i class="fas fa-calculator"></i></div>
@@ -34,7 +35,8 @@
             <p data-en="Compute your personal tax liability instantly. Supports all deductions and rebates."
                 data-ne="तपाईंको व्यक्तिगत कर दायित्व तुरुन्तै गणना गर्नुहोस्। सबै कट्टा र छुटहरूलाई समर्थन गर्दछ।">
                 तपाईंको व्यक्तिगत कर दायित्व तुरुन्तै गणना गर्नुहोस्। सबै कट्टा र छुटहरूलाई समर्थन गर्दछ।</p>
-            <a href="#" class="card-link" data-en="Calculate Now →" data-ne="अहिले गणना गर्नुहोस् →">अहिले गणना
+            <a href="{% url 'income-tax' %}" class="card-link" data-en="Calculate Now →"
+                data-ne="अहिले गणना गर्नुहोस् →">अहिले गणना
                 गर्नुहोस् →</a>
         </div>
         <div class="card">
@@ -43,7 +45,8 @@
             <p data-en="Calculate corporate taxes with applicable rates for different types of industries."
                 data-ne="विभिन्न प्रकारका उद्योग र व्यवसायहरूको लागि लागू दरहरूको साथ संस्थागत कर गणना गर्नुहोस्।">
                 विभिन्न प्रकारका उद्योग र व्यवसायहरूको लागि लागू दरहरूको साथ संस्थागत कर गणना गर्नुहोस्।</p>
-            <a href="#" class="card-link" data-en="Calculate Now →" data-ne="अहिले गणना गर्नुहोस् →">अहिले गणना
+            <a href="{% url 'corporate-tax' %}" class="card-link" data-en="Calculate Now →"
+                data-ne="अहिले गणना गर्नुहोस् →">अहिले गणना
                 गर्नुहोस् →</a>
         </div>
         <div class="card">
@@ -52,7 +55,8 @@
             <p data-en="Details about Value Added Tax limits, registration processes, and compliance requirements."
                 data-ne="मूल्य अभिवृद्धि कर (VAT) सीमाहरू, दर्ता प्रक्रियाहरू, र अनुपालन आवश्यकताहरू बारे विवरणहरू।">
                 मूल्य अभिवृद्धि कर (VAT) सीमाहरू, दर्ता प्रक्रियाहरू, र अनुपालन आवश्यकताहरू बारे विवरणहरू।</p>
-            <a href="#" class="card-link" data-en="View Info →" data-ne="जानकारी हेर्नुहोस् →">जानकारी हेर्नुहोस्
+            <a href="{% url 'vat' %}" class="card-link" data-en="View Info →" data-ne="जानकारी हेर्नुहोस् →">जानकारी
+                हेर्नुहोस्
                 →</a>
         </div>
     </div>
@@ -98,15 +102,16 @@
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="cta-section">
-    <div class="cta-section-content">
+<!-- CallToAction Section -->
+<section class="cal-section">
+    <div class="cal-section-content">
         <h2 data-en="Ready to Calculate Your Taxes?" data-ne="आफ्नो कर गणना गर्न तयार हुनुहुन्छ?">Ready to Calculate
             Your Taxes?</h2>
         <p data-en="Start with our income tax calculator or explore our comprehensive tax guides."
             data-ne="हाम्रो आयकर क्याल्कुलेटरबाट सुरु गर्नुहोस् वा हाम्रो विस्तृत कर निर्देशिकाहरू अन्वेषण गर्नुहोस्।">
             Start with our income tax calculator or explore our comprehensive tax guides.</p>
-        <button class="cta-button" data-en="Get Started Now" data-ne="अहिले नै सुरु गर्नुहोस्">Get Started
+        <button id="get-started-btn" class="cal-button" data-en="Get Started Now" data-ne="अहिले नै सुरु गर्नुहोस्">Get
+            Started
             Now</button>
     </div>
 </section>

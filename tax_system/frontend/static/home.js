@@ -20,3 +20,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// ── Smooth scroll for 'Calculate Tax' button ────────────────────────────────
+const calcTaxBtn = document.getElementById('calc-tax-btn');
+if (calcTaxBtn) {
+    calcTaxBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetSection = document.getElementById('quick-access-section');
+        if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+}
+
+// ── Smooth scroll for 'Get Started Now' button ──────────────────────────────
+const getStartedBtn = document.getElementById('get-started-btn');
+if (getStartedBtn) {
+    getStartedBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetSection = document.getElementById('quick-access-section');
+        if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+}
