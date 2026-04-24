@@ -12,16 +12,16 @@
         <!-- Payment Type -->
         <label data-en="Payment Type" data-ne="भुक्तानी प्रकार">Payment Type</label>
         <select name="type" required>
-            <option value="salary">Salary</option>
-            <option value="rent">Rent</option>
-            <option value="service">Service</option>
-            <option value="dividend">Dividend</option>
-            <option value="interest">Interest</option>
+            <option value="salary" data-en="Salary" data-ne="तलब">Salary</option>
+            <option value="rent" data-en="Rent" data-ne="भाडा">Rent</option>
+            <option value="service" data-en="Service" data-ne="सेवा">Service</option>
+            <option value="dividend" data-en="Dividend" data-ne="लाभांश">Dividend</option>
+            <option value="interest" data-en="Interest" data-ne="ब्याज">Interest</option>
         </select>
 
         <!-- Amount -->
         <label data-en="Amount" data-ne="रकम">Amount</label>
-        <input type="number" name="amount" required placeholder="Enter amount">
+        <input type="number" name="amount" required data-en="Enter amount" data-ne="रकम प्रविष्ट गर्नुहोस्" placeholder="Enter amount">
 
         <!-- Button -->
         <button type="submit" class="btn" data-en="Calculate TDS" data-ne="टीडीएस गणना गर्नुहोस्">
@@ -33,7 +33,12 @@
     {% if result %}
     <div class="result-box">
         <h3 data-en="Result" data-ne="नतिजा">Result</h3>
-        <p><b data-en="Type:" data-ne="प्रकार:">Type:</b> {{ result.type }}</p>
+        <p><b data-en="Type:" data-ne="प्रकार:">Type:</b> 
+            <span data-en="{{ result.type|title }}" 
+                  data-ne="{% if result.type == 'salary' %}तलब{% elif result.type == 'rent' %}भाडा{% elif result.type == 'service' %}सेवा{% elif result.type == 'dividend' %}लाभांश{% elif result.type == 'interest' %}ब्याज{% else %}{{ result.type }}{% endif %}">
+                {{ result.type|title }}
+            </span>
+        </p>
         <p><b data-en="Amount:" data-ne="रकम:">Amount:</b> {{ result.amount }}</p>
         <p><b data-en="TDS Rate:" data-ne="टीडीएस दर:">TDS Rate:</b> {{ result.rate }}%</p>
         <p><b data-en="TDS Amount:" data-ne="कट्टा रकम:">TDS Amount:</b> {{ result.tds }}</p>
