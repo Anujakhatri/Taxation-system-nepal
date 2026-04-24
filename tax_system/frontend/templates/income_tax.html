@@ -1,19 +1,93 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block title %} Income Tax
+Calculator - Tax Information Portal {% endblock %} {% block stylesheets %}
+<link rel="stylesheet" href="{% static 'home.css' %}" />
+<link rel="stylesheet" href="{% static 'income_tax.css' %}" />
 
-{% block title %} Income Tax Calculator - Tax Information Portal {% endblock %}
-
-{% block stylesheets %}
-<link rel="stylesheet" href="{% static 'home.css' %}">
-<link rel="stylesheet" href="{% static 'income_tax.css' %}">
-
-{% endblock %}
-
-{% block content %}
-<div class="tax-container">
+{% endblock %} {% block content %}
+<div class="tax-page">
+  <div class="tax-card">
     <h2 data-en="Income Tax Calculator" data-ne="आयकर क्याल्कुलेटर">
-        Income Tax Calculator
+      Income Tax Calculator
     </h2>
-    <p style="text-align:center;">Coming soon...</p>
+
+    <p
+      class="subtitle"
+      data-en="Calculate your tax easily using Nepal tax system"
+      data-ne="नेपालको कर प्रणाली अनुसार सजिलै कर गणना गर्नुहोस्"
+    >
+      Calculate your tax easily using Nepal tax system
+    </p>
+
+    <!-- FORM UI (placeholder for now) -->
+    <form class="tax-form" method="POST" action="{% url 'income-tax' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label>Annual Income <span style="color: red">*</span></label>
+        <input
+          type="number"
+          name="income"
+          placeholder="Enter your income"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Marital Status <span style="color: red">*</span></label>
+        <select name="marital_status" required>
+          <option value="">Select Marital Status</option>
+          <option value="single">Single</option>
+          <option value="couple">Couple</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Employment Type <span style="color: red">*</span></label>
+        <small>Select your main source of income</small>
+        <select name="employment_type" required>
+          <option value="">Select Employment Type</option>
+          <option value="salary">Salaried (Government/Private Job)</option>
+          <option value="self_employed">Self Employed / Freelancer</option>
+          <option value="business">Business Owner</option>
+          <option value="consultant">Consultant / Professional</option>
+          <option value="foreign_employment">Foreign Employment</option>
+          <option value="pension">Pension Income</option>
+        </select>
+      </div>
+
+      <button type="submit" class="calc-btn">Calculate Tax</button>
+    </form>
+
+    <!-- Result -->
+    {% if result %}
+    <div class="result-box">
+      <h3 data-en="Result" data-ne="नतिजा">Result</h3>
+
+      <p>
+        <b data-en="Type:" data-ne="प्रकार:">Type:</b>
+        {{ result.type }}
+      </p>
+
+      <p>
+        <b data-en="Amount:" data-ne="रकम:">Amount:</b>
+        {{ result.amount }}
+      </p>
+
+      <p>
+        <b data-en="Tax Rate:" data-ne="कर दर:">Tax Rate:</b>
+        {{ result.rate }}%
+      </p>
+
+      <p>
+        <b data-en="Tax Amount:" data-ne="कर रकम:">Tax Amount:</b>
+        {{ result.tax_amount }}
+      </p>
+
+      <p>
+        <b data-en="Net Payment:" data-ne="शुद्ध भुक्तानी:">Net Payment:</b>
+        {{ result.net }}
+      </p>
+    </div>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}

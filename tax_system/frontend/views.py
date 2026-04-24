@@ -42,7 +42,44 @@ def calculate_tds(request):
     return render(request, "tds.html", {"result": result})
 
 def income_tax(request):
-    return render(request, "income_tax.html")
+    result = None
+
+    if request.method == "POST":
+        income = float(request.POST.get("income"))
+        employment_type = request.POST.get("employment_type")
+        marital_status = request.POST.get("marital_status")
+
+        # Income tax rates based on employement type
+        if employment_type == "salary":
+            tax_rate = 0.1
+            if marital_status == "couple":
+                tax_rate -= 0.01
+        elif employment_type == "business":
+            tax_rate = 0.15
+            if marital_status == "couple":
+                tax_rate -= 0.15
+        elif employment_type == "foreign_employment":
+            tax_rate = 0.05
+            if marital_status == "couple":
+                tax_rate -= 0.05
+        else:
+            tax_rate = 0.08 
+            if marital_status == "couple":
+                tax_rate -= 0.08 
+
+        tax_amount = income * tax_rate
+        net = income - tax_amount
+
+        result = {
+            "amount": income,
+            "rate": tax_rate * 100,
+            "tax_amount": tax_amount,
+            "net": net,
+            "type": employment_type
+        }
+
+    return render(request, "income_tax.html", {"result": result})
+
 
 def corporate_tax(request):
     return render(request, "corporate_tax.html")
