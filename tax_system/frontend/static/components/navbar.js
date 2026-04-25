@@ -25,6 +25,12 @@ function setLanguage(lang) {
             : el.getAttribute('data-ne');
     });
 
+    document.querySelectorAll('[data-en-placeholder][data-ne-placeholder]').forEach(el => {
+        el.placeholder = isEnglish
+            ? el.getAttribute('data-en-placeholder')
+            : el.getAttribute('data-ne-placeholder');
+    });
+
     localStorage.setItem('preferredLanguage', lang);
 
     console.log('Language switched to:', lang);
@@ -62,7 +68,7 @@ function setLanguage(lang) {
 document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         if (window.location.pathname === '/') {
-            const hash = this.getAttribute('href').substring(1); // gets '#...'
+            const hash = this.getAttribute('href').substring(1); // remove the first character i.e # from href
             const target = document.querySelector(hash);
             if (target) {
                 e.preventDefault();

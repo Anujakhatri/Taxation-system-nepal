@@ -1,19 +1,73 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block title %} Corporate Tax
+Calculator - Tax Information Portal {% endblock %} {% block stylesheets %}
+<link rel="stylesheet" href="{% static 'home.css' %}" />
+<link rel="stylesheet" href="{% static 'shared_tax.css' %}" />
 
-{% block title %} Corporate Tax Calculator - Tax Information Portal {% endblock %}
+{% endblock %} {% block content %}
 
-{% block stylesheets %}
-<link rel="stylesheet" href="{% static 'home.css' %}">
-<link rel="stylesheet" href="{% static 'corporate_tax.css' %}">
-
-{% endblock %}
-
-{% block content %}
-<div class="tax-container">
-    <h2 data-en="Corporate Tax Calculator" data-ne="संस्थागत कर क्याल्कुलेटर">
-        Corporate Tax Calculator
+<div class="tax-layout">
+  <!-- Left Side: Slab/Rate Reference -->
+  <div class="slab-reference">
+    <h2 data-en="Corporate Tax Rates — FY 2082/83" data-ne="संस्थागत कर दरहरू — आ.व. २०८२/८३">
+      संस्थागत कर दरहरू — आ.व. २०८२/८३
     </h2>
-    <p style="text-align:center;">Coming soon...</p>
+    <div class="rate-grid">
+      <div class="rate-card">
+        <span class="rate-badge">२५%</span>
+        <p data-en="General Business" data-ne="सामान्य व्यवसाय">सामान्य व्यवसाय</p>
+      </div>
+      <div class="rate-card">
+        <span class="rate-badge">३०%</span>
+        <p data-en="Bank / Telecom / Insurance" data-ne="बैंक / दूरसञ्चार / बीमा"> बैंक / दूरसञ्चार / बीमा</p>
+      </div>
+      <div class="rate-card">
+        <span class="rate-badge">२०%</span>
+        <p data-en="Special Industry(Hydropower, Manufacturing, etc.)" data-ne="विशेष उद्योग(जलविद्युत, उत्पादन आदि)">
+          विशेष उद्योग(जलविद्युत, उत्पादन आदि)</p>
+      </div>
+      <div class="rate-card">
+        <span class="rate-badge">५%</span>
+        <p data-en="Listed Company Rebate(Conditional)" data-ne="सूचीकृत कम्पनी छुट(सर्त अनुसार)">सूचीकृत कम्पनी
+          छुट(सर्त अनुसार)</p>
+      </div>
+    </div>
+    <p class="slab-note" style="margin-top:10px; font-size: 0.9em; opacity: 0.8;"
+      data-en="Note: Listed companies may receive up to 5% tax rebate based on public shareholding and compliance. This is not a flat rate reduction."
+      data-ne="नोट: सूचीकृत कम्पनीहरूले सर्वसाधारण शेयर स्वामित्व र मापदण्ड अनुसार अधिकतम ५% सम्म कर छुट पाउन सक्छन्। यो स्थिर दर घटाइएको होइन।">
+      नोट: सूचीकृत कम्पनीहरूले सर्त अनुसार अधिकतम ५% सम्म छुट पाउन सक्छन्।
+    </p>
+  </div>
+
+  <!-- Right Side: Calculator Section -->
+  <div class="tax-page">
+    <h2 class="calculator-title" data-en="Corporate Tax Calculator" data-ne="संस्थागत कर क्याल्कुलेटर">
+      Corporate Tax Calculator
+    </h2>
+    <p class="calculator-subtitle" data-en="Calculate your business tax according to latest Nepal rates"
+      data-ne="नेपालको पछिल्लो दर अनुसार आफ्नो व्यावसायिक कर गणना गर्नुहोस्">
+      Calculate your business tax according to latest Nepal rates
+    </p>
+
+    <div class="tax-card">
+      <form class="tax-form">
+        {% csrf_token %}
+        <div class="form-group">
+          <label data-en="Annual Net Profit" data-ne="वार्षिक खुद नाफा">Annual Net Profit</label>
+          <input type="number" placeholder="Enter amount" />
+
+          <!-- add other required fields here -->
+
+        </div>
+        <button type="submit" class="calc-btn" data-en="Calculate Tax" data-ne="कर गणना गर्नुहोस्">Calculate
+          Tax</button>
+      </form>
+      <div id="corporate-tax-result-container">
+        <!-- result print garne section-->
+        <p style="text-align: center; margin-top: 2rem; color: var(--text-muted);">
+          <i data-en="Form logic goes here..." data-ne="तर्क यहाँ आउँछ...">Form logic goes here...</i>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
