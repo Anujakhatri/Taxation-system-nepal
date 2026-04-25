@@ -78,6 +78,11 @@
     transition: border-color 0.3s;
 }
 
+.form-group input::placeholder {
+    color: #94a3b8;
+    opacity: 1;
+}
+
 .form-group input:focus,
 .form-group select:focus {
     outline: none;

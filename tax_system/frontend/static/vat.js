@@ -1,182 +1,114 @@
-/* VAT CALCULATOR — JavaScript */
+/* VAT CALCULATOR — JavaScript Implementation */
 
-const VAT_RATE = 0.13;
-const THRESHOLD = 5000000;
-const THRESHOLD_BUFFER = 4500000;
+document.addEventListener('DOMContentLoaded', function () {
+    const calcBtn = document.getElementById('calc-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const amountInput = document.getElementById('vat_amount');
+    
+    // Result Elements
+    const resBase = document.getElementById('res-base');
+    const resVat = document.getElementById('res-vat');
+    const resTotal = document.getElementById('res-total');
+    const resultContent = document.getElementById('result-content');
+    const resultPlaceholder = document.getElementById('result-placeholder');
+    
+    // Visual Elements
+    const barBase = document.getElementById('bar-base');
+    const barVat = document.getElementById('bar-vat');
 
-let currentMode = 'exclusive';
+    if (calcBtn) {
+        calcBtn.addEventListener('click', calculateVAT);
+    }
 
-function setMode(mode) {
-    currentMode = mode;
+    if (resetBtn) {
+        resetBtn.addEventListener('click', resetCalculator);
+    }
 
-    document.getElementById('modeExclusive').classList.toggle('active', mode === 'exclusive');
-    document.getElementById('modeInclusive').classList.toggle('active', mode === 'inclusive');
-
-    const isNepali = document.body.classList.contains('nepali-font');
-
-    const hints = {
-        exclusive: {
-            en: 'Enter the price before VAT is applied',
-            ne: 'भ्याट लागू हुनु अघिको मूल्य प्रविष्ट गर्नुहोस्'
-        },
-        inclusive: {
-            en: 'Enter the price that already includes VAT',
-            ne: 'भ्याट पहिले नै समावेश भएको मूल्य प्रविष्ट गर्नुहोस्'
+    function calculateVAT() {
+        const amount = parseFloat(amountInput.value);
+        if (isNaN(amount) || amount <= 0) {
+            alert("Please enter a valid amount");
+            return;
         }
-    };
 
-    const labels = {
-        exclusive: {
-            en: 'Enter Amount without VAT (Rs.)',
-            ne: 'भ्याट बिनाको रकम प्रविष्ट गर्नुहोस् (रु.)'
-        },
-        inclusive: {
-            en: 'Enter Amount with VAT (Rs.)',
-            ne: 'भ्याट सहितको रकम प्रविष्ट गर्नुहोस् (रु.)'
+        // Get selected Mode (Add VAT or Extract VAT)
+        const mode = document.querySelector('input[name="vat_mode"]:checked').value;
+        
+        // Get selected Rate
+        const ratePercent = parseFloat(document.querySelector('input[name="vat_rate"]:checked').value);
+        const rate = ratePercent / 100;
+
+        let baseAmount, vatAmount, totalAmount;
+
+        if (mode === 'add') {
+            // Add VAT to Price
+            baseAmount = amount;
+            vatAmount = baseAmount * rate;
+            totalAmount = baseAmount + vatAmount;
+        } else {
+            // Extract VAT from Price
+            totalAmount = amount;
+            baseAmount = totalAmount / (1 + rate);
+            vatAmount = totalAmount - baseAmount;
         }
-    };
 
-    const lang = isNepali ? 'ne' : 'en';
-    document.getElementById('inputHint').textContent = hints[mode][lang];
-    document.getElementById('inputLabel').textContent = labels[mode][lang];
-
-
-    calculate();
-}
-
-// Main calculation
-
-function calculate() {
-    const raw = parseFloat(document.getElementById('amountInput').value);
-
-    if (isNaN(raw) || raw <= 0) {
-        resetDisplay();
-        return;
+        // Update UI
+        displayResults(baseAmount, vatAmount, totalAmount, ratePercent);
     }
 
-    let basePrice, vatAmount, totalPrice;
+    function displayResults(base, vat, total, rate) {
+        resBase.textContent = formatNPR(base);
+        resVat.textContent = formatNPR(vat);
+        resTotal.textContent = formatNPR(total);
 
-    if (currentMode === 'exclusive') {
-        // User entered price WITHOUT VAT
-        basePrice = raw;
-        vatAmount = raw * VAT_RATE;
-        totalPrice = raw + vatAmount;
-    } else {
-        // User entered price WITH VAT — extract base
-        totalPrice = raw;
-        basePrice = raw / (1 + VAT_RATE);
-        vatAmount = raw - basePrice;
+        // Update VAT row label if needed
+        const vatLabel = document.querySelector('.vat-row.accent span[data-en^="VAT Amount"]');
+        if (vatLabel) {
+            vatLabel.textContent = `भ्याट रकम (${rate}%)`;
+            vatLabel.setAttribute('data-en', `VAT Amount (${rate}%)`);
+            vatLabel.setAttribute('data-ne', `भ्याट रकम (${rate}%)`);
+        }
+
+        // Update Visual Bars
+        const totalSum = base + vat;
+        const baseWidth = (base / totalSum) * 100;
+        const vatWidth = (vat / totalSum) * 100;
+
+        if (barBase) barBase.style.width = `${baseWidth}%`;
+        if (barVat) barVat.style.width = `${vatWidth}%`;
+
+        // Show results
+        resultPlaceholder.classList.add('hidden');
+        resultContent.classList.remove('hidden');
+        
+        // Add updated animation class
+        [resBase, resVat, resTotal].forEach(el => {
+            el.classList.remove('updated');
+            void el.offsetWidth; // Trigger reflow
+            el.classList.add('updated');
+        });
     }
 
-    displayResults(basePrice, vatAmount, totalPrice);
-}
-
-
-function displayResults(base, vat, total) {
-    setAnimatedValue('basePrice', formatNPR(base));
-    setAnimatedValue('vatAmount', formatNPR(vat));
-    setAnimatedValue('totalPrice', formatNPR(total));
-}
-
-function setAnimatedValue(id, value) {
-    const el = document.getElementById(id);
-    el.textContent = value;
-    el.classList.remove('updated');
-    // Force reflow to restart animation
-    void el.offsetWidth;
-    el.classList.add('updated');
-}
-
-function resetDisplay() {
-    ['basePrice', 'vatAmount', 'totalPrice'].forEach(id => {
-        document.getElementById(id).textContent = 'रु. —';
-    });
-}
-
-function resetCalc() {
-    document.getElementById('amountInput').value = '';
-    resetDisplay();
-}
-
-// NPR nepali style format
-
-function formatNPR(amount) {
-    const fixed = amount.toFixed(2);
-    const [intPart, decPart] = fixed.split('.');
-
-    const formatted = intPart.replace(/\B(?=(\d\d)+(?!\d)$)(?<=\d{3,})/g, ',') ||
-        intPart.replace(/(\d)(?=(\d\d)+\d$)/g, '$1,');
-
-    const num = parseInt(intPart, 10);
-    const sas = toSouthAsianFormat(num);
-
-    return `रु. ${sas}.${decPart}`;
-}
-
-function toSouthAsianFormat(n) {
-    if (n < 0) return '-' + toSouthAsianFormat(-n);
-    const s = n.toString();
-    if (s.length <= 3) return s;
-
-    // Last 3 digits, then groups of 2
-    const last3 = s.slice(-3);
-    const rest = s.slice(0, -3);
-    const groups = rest.replace(/(\d)(?=(\d\d)+$)/g, '$1,');
-    return groups + ',' + last3;
-}
-
-//Registration checker
-
-function checkRegistration() {
-    const raw = parseFloat(document.getElementById('turnoverInput').value);
-    const resultDiv = document.getElementById('registrationResult');
-    const statusDiv = document.getElementById('regStatus');
-
-    if (isNaN(raw) || raw <= 0) {
-        resultDiv.style.display = 'none';
-        return;
+    function resetCalculator() {
+        amountInput.value = '';
+        resultContent.classList.add('hidden');
+        resultPlaceholder.classList.remove('hidden');
+        
+        resBase.textContent = 'रू. ०';
+        resVat.textContent = 'रू. ०';
+        resTotal.textContent = 'रू. ०';
+        
+        if (barBase) barBase.style.width = '0%';
+        if (barVat) barVat.style.width = '0%';
     }
 
-    resultDiv.style.display = 'block';
-    const isNepali = document.body.classList.contains('nepali-font');
-
-    let cssClass, icon, titleEn, titleNe, descEn, descNe;
-
-    if (raw >= THRESHOLD) {
-        cssClass = 'must-register';
-        icon = '⚠️';
-        titleEn = 'VAT Registration Required';
-        titleNe = 'भ्याट दर्ता अनिवार्य छ';
-        descEn = `Your turnover of ${formatNPR(raw)} exceeds the Rs. 50 lakh threshold. You must register with the Inland Revenue Department immediately.`;
-        descNe = `तपाईंको ${formatNPR(raw)} कारोबार रु. ५० लाखको सीमा नाघेको छ। तपाईंले तुरुन्त आन्तरिक राजस्व विभागमा दर्ता गर्नु पर्छ।`;
-    } else if (raw >= THRESHOLD_BUFFER) {
-        cssClass = 'borderline';
-        icon = '🚨';
-        titleEn = 'Approaching the Threshold';
-        titleNe = 'सीमा नजिक पुग्दै';
-        descEn = `Your turnover is close to Rs. 50 lakhs. Monitor your sales carefully — once you cross the threshold you must register.`;
-        descNe = `तपाईंको कारोबार रु. ५० लाखको नजिक छ। आफ्नो बिक्री ध्यानपूर्वक हेर्नुहोस् — सीमा नाघेपछि दर्ता अनिवार्य हुन्छ।`;
-    } else {
-        cssClass = 'no-register';
-        icon = '✅';
-        titleEn = 'Registration Not Required';
-        titleNe = 'दर्ता आवश्यक छैन';
-        descEn = `Your turnover of ${formatNPR(raw)} is below Rs. 50 lakhs. VAT registration is optional but you can register voluntarily.`;
-        descNe = `तपाईंको ${formatNPR(raw)} कारोबार रु. ५० लाखभन्दा कम छ। भ्याट दर्ता ऐच्छिक छ तर तपाईं ऐच्छिक रूपमा दर्ता गर्न सक्नुहुन्छ।`;
+    function formatNPR(amount) {
+        // Round to 2 decimal places
+        const formatted = new Intl.NumberFormat('en-IN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(amount);
+        
+        return `रू. ${formatted}`;
     }
-
-    statusDiv.className = `reg-status ${cssClass}`;
-    document.getElementById('regIcon').textContent = icon;
-    document.getElementById('regTitle').textContent = isNepali ? titleNe : titleEn;
-    document.getElementById('regDesc').textContent = isNepali ? descNe : descEn;
-}
-
-
-const _originalSetLanguage = window.setLanguage;
-window.setLanguage = function (lang) {
-    if (_originalSetLanguage) _originalSetLanguage(lang);
-    // Re-apply mode so hints update to new language
-    setMode(currentMode);
-    // Re-run registration result if there's a value
-    checkRegistration();
-};
+});

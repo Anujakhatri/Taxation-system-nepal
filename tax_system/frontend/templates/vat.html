@@ -5,277 +5,117 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'home.css' %}">
+<link rel="stylesheet" href="{% static 'shared_tax.css' %}">
 <link rel="stylesheet" href="{% static 'vat.css' %}">
-
 {% endblock %}
 
 {% block content %}
 <div class="calc-page vat">
 
-    <!-- Page Header -->
-    <div class="page-header">
-        <div class="header-content">
-            <a href="{% url 'home' %}" class="back-link">
-                <i class="fas fa-arrow-left"></i>
-                <span data-en="Back to Home" data-ne="गृहपृष्ठमा फर्कनुहोस्">गृहपृष्ठमा फर्कनुहोस्</span>
-            </a>
-            <div class="header-icon">𝍑</div>
-            <h1 data-en="VAT Calculator & Information" data-ne="भ्याट क्याल्कुलेटर र जानकारी">
-                भ्याट क्याल्कुलेटर र जानकारी
-            </h1>
-            <p data-en="Calculate VAT and learn about VAT registration and compliance in Nepal."
-                data-ne="नेपालमा भ्याट गणना गर्नुहोस् र भ्याट दर्ता तथा अनुपालन बारे जान्नुहोस्।">
-                नेपालमा भ्याट गणना गर्नुहोस् र भ्याट दर्ता तथा अनुपालन बारे जान्नुहोस्।
-            </p>
-        </div>
-    </div>
-
-    <!-- Tab Navigation -->
-    <div class="tab-nav">
-        <button class="tab-btn active" data-tab="calculator">
-            <i class="fas fa-calculator"></i>
-            <span data-en="VAT Calculator" data-ne="भ्याट क्याल्कुलेटर">भ्याट क्याल्कुलेटर</span>
-        </button>
-        <button class="tab-btn" data-tab="info">
-            <i class="fas fa-circle-info"></i>
-            <span data-en="VAT Information" data-ne="भ्याट जानकारी">भ्याट जानकारी</span>
-        </button>
-        <button class="tab-btn" data-tab="registration">
-            <i class="fas fa-file-signature"></i>
-            <span data-en="Registration" data-ne="दर्ता">दर्ता</span>
-        </button>
-    </div>
-
-    <!-- ── TAB: Calculator ─────────────────────────────── -->
-    <div id="tab-calculator" class="tab-content active">
-        <div class="calc-layout">
-
-            <!-- Input Panel -->
-            <div class="calc-panel input-panel">
-                <h2 class="panel-title">
-                    <i class="fas fa-tags"></i>
-                    <span data-en="Price Details" data-ne="मूल्य विवरण">मूल्य विवरण</span>
-                </h2>
-
-                <!-- Calculation Mode -->
-                <div class="form-group">
-                    <label data-en="Calculation Type" data-ne="गणना प्रकार">गणना प्रकार</label>
-                    <div class="radio-group">
-                        <label class="radio-card active" id="label-add-vat">
-                            <input type="radio" name="vat_mode" value="add" checked>
-                            <i class="fas fa-plus"></i>
-                            <span data-en="Add VAT to Price" data-ne="मूल्यमा भ्याट जोड्नुहोस्">मूल्यमा भ्याट
-                                जोड्नुहोस्</span>
-                        </label>
-                        <label class="radio-card" id="label-extract-vat">
-                            <input type="radio" name="vat_mode" value="extract">
-                            <i class="fas fa-minus"></i>
-                            <span data-en="Extract VAT from Price" data-ne="मूल्यबाट भ्याट निकाल्नुहोस्">मूल्यबाट भ्याट
-                                निकाल्नुहोस्</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Amount -->
-                <div class="form-group">
-                    <label for="vat_amount" id="vat-amount-label" data-en="Amount (Exclusive of VAT) — NPR"
-                        data-ne="रकम (भ्याट बाहेक) — रू.">रकम (भ्याट बाहेक) — रू.</label>
-                    <div class="input-wrapper">
-                        <span class="input-prefix">रू.</span>
-                        <input type="number" id="vat_amount" placeholder="0" min="0">
-                    </div>
-                </div>
-
-                <!-- VAT Rate -->
-                <div class="form-group">
-                    <label data-en="VAT Rate" data-ne="भ्याट दर">भ्याट दर</label>
-                    <div class="radio-group small">
-                        <label class="radio-card active" id="label-vat-13">
-                            <input type="radio" name="vat_rate" value="13" checked>
-                            <span>१३% (Standard)</span>
-                        </label>
-                        <label class="radio-card" id="label-vat-0">
-                            <input type="radio" name="vat_rate" value="0">
-                            <span data-en="0% (Exempt)" data-ne="०% (छुट)">०% (छुट)</span>
-                        </label>
-                    </div>
-                </div>
-
-                <button id="calc-btn" class="calc-btn">
-                    <i class="fas fa-calculator"></i>
-                    <span data-en="Calculate VAT" data-ne="भ्याट गणना गर्नुहोस्">भ्याट गणना गर्नुहोस्</span>
-                </button>
-                <button id="reset-btn" class="reset-btn">
-                    <i class="fas fa-rotate-left"></i>
-                    <span data-en="Reset" data-ne="रिसेट">रिसेट</span>
-                </button>
-            </div>
-
-            <!-- Result Panel -->
-            <div class="calc-panel result-panel">
-                <h2 class="panel-title">
-                    <i class="fas fa-receipt"></i>
-                    <span data-en="VAT Breakdown" data-ne="भ्याट विवरण">भ्याट विवरण</span>
-                </h2>
-
-                <div id="result-placeholder" class="result-placeholder">
-                    <i class="fas fa-receipt"></i>
-                    <p data-en="Enter an amount and click Calculate to see the VAT breakdown."
-                        data-ne="रकम भर्नुहोस् र भ्याट विवरण हेर्न गणना गर्नुहोस् क्लिक गर्नुहोस्।">
-                        रकम भर्नुहोस् र भ्याट विवरण हेर्न गणना गर्नुहोस् क्लिक गर्नुहोस्।
-                    </p>
-                </div>
-
-                <div id="result-content" class="result-content hidden">
-                    <div class="vat-result-grid">
-                        <div class="vat-row">
-                            <span data-en="Base Amount (excl. VAT)" data-ne="आधार रकम (भ्याट बाहेक)">आधार रकम (भ्याट
-                                बाहेक)</span>
-                            <span id="res-base">रू. ०</span>
-                        </div>
-                        <div class="vat-row accent">
-                            <span data-en="VAT Amount (13%)" data-ne="भ्याट रकम (१३%)">भ्याट रकम (१३%)</span>
-                            <span id="res-vat">रू. ०</span>
-                        </div>
-                        <div class="vat-row total">
-                            <span data-en="Total (incl. VAT)" data-ne="कुल (भ्याट सहित)">कुल (भ्याट सहित)</span>
-                            <span id="res-total">रू. ०</span>
-                        </div>
+    <div class="tax-layout">
+        <!-- LEFT SECTION: VAT Information -->
+        <div class="tax-slab-section">
+            <h2 class="calculator-title" style="margin-bottom: 1.5rem;" data-en="VAT Information"
+                data-ne="भ्याट जानकारी">भ्याट जानकारी</h2>
+            <div id="tab-info" class="tab-content active">
+                <div class="slab-tables">
+                    <!-- Standard VAT Rate Card -->
+                    <div class="slab-table-card">
+                        <h3 data-en="Standard VAT Rate" data-ne="मानक भ्याट दर">मानक भ्याट दर</h3>
+                        <p class="big-stat"
+                            style="font-size: 2rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 0.5rem;">
+                            13%</p>
+                        <p data-en="Nepal charges a flat 13% VAT on most goods and services."
+                            data-ne="नेपालले अधिकांश वस्तु र सेवाहरूमा १३% को एकल भ्याट दर लागू गर्दछ।">
+                            नेपालले अधिकांश वस्तु र सेवाहरूमा १३% को एकल भ्याट दर लागू गर्दछ।
+                        </p>
                     </div>
 
-                    <div class="vat-visual">
-                        <div class="bar-label" data-en="VAT Proportion" data-ne="भ्याट अनुपात">भ्याट अनुपात</div>
-                        <div class="proportion-bar">
-                            <div class="bar-base" id="bar-base"></div>
-                            <div class="bar-vat" id="bar-vat"></div>
-                        </div>
-                        <div class="bar-legend">
-                            <span><span class="dot base"></span>
-                                <span data-en="Base Price" data-ne="आधार मूल्य">आधार मूल्य</span>
-                            </span>
-                            <span><span class="dot vat"></span>
-                                <span data-en="VAT" data-ne="भ्याट">भ्याट</span>
-                            </span>
-                        </div>
+                    <!-- Registration Threshold Card -->
+                    <div class="slab-table-card">
+                        <h3 data-en="VAT Registration Threshold" data-ne="भ्याट दर्ता सीमा">भ्याट दर्ता सीमा</h3>
+                        <p class="big-stat"
+                            style="font-size: 1.5rem; font-weight: 800; color: var(--primary-light); margin-bottom: 0.5rem;">
+                            रू. ५०,००,०००</p>
+                        <p data-en="Businesses with annual turnover above NPR 50,00,000 must register for VAT."
+                            data-ne="वार्षिक कारोबार रू. ५०,००,००० भन्दा बढी भएका व्यवसायहरूले भ्याट दर्ता गर्नुपर्छ।">
+                            वार्षिक कारोबार रू. ५०,००,००० भन्दा बढी भएका व्यवसायहरूले भ्याट दर्ता गर्नुपर्छ।
+                        </p>
                     </div>
 
-                    <p class="disclaimer"
-                        data-en="Standard VAT rate in Nepal is 13%. Certain goods and services are exempt."
-                        data-ne="नेपालमा मानक भ्याट दर १३% हो। केही वस्तु र सेवाहरू छुटमा छन्।">
-                        नेपालमा मानक भ्याट दर १३% हो। केही वस्तु र सेवाहरू छुटमा छन्।
-                    </p>
+                    <!-- Filing Period Card -->
+                    <div class="slab-table-card">
+                        <h3 data-en="VAT Filing Period" data-ne="भ्याट दाखिला अवधि">भ्याट दाखिला अवधि</h3>
+                        <p class="big-stat"
+                            style="font-size: 1.5rem; font-weight: 800; color: var(--primary-light); margin-bottom: 0.5rem;"
+                            data-en="Monthly" data-ne="मासिक">मासिक</p>
+                        <p data-en="VAT returns must be filed monthly within 25 days after the end of each month."
+                            data-ne="प्रत्येक महिना समाप्त भएको २५ दिनभित्र मासिक भ्याट विवरण दाखिला गर्नुपर्छ।">
+                            प्रत्येक महिना समाप्त भएको २५ दिनभित्र मासिक भ्याट विवरण दाखिला गर्नुपर्छ।
+                        </p>
+                    </div>
+
+                    <!-- Exempt Goods Card -->
+                    <div class="slab-table-card">
+                        <h3 data-en="VAT-Exempt Goods & Services" data-ne="भ्याट छुट वस्तु र सेवाहरू">भ्याट छुट वस्तु र
+                            सेवाहरू</h3>
+                        <ul class="exempt-list"
+                            style="list-style: disc; padding-left: 1.5rem; margin-top: 1rem; color: var(--text-muted); font-size: 14px;">
+                            <li data-en="Basic food items (rice, flour, vegetables, etc.)"
+                                data-ne="आधारभूत खाद्य वस्तुहरू (चामल, पीठो, तरकारी आदि)">आधारभूत खाद्य वस्तुहरू (चामल,
+                                पीठो, तरकारी आदि)</li>
+                            <li data-en="Medical services and medicines" data-ne="चिकित्सा सेवा र औषधिहरू">चिकित्सा सेवा
+                                र औषधिहरू</li>
+                            <li data-en="Educational services" data-ne="शैक्षिक सेवाहरू">शैक्षिक सेवाहरू</li>
+                            <li data-en="Agricultural inputs" data-ne="कृषि सामग्रीहरू">कृषि सामग्रीहरू</li>
+                            <li data-en="Books and printed materials" data-ne="किताब र मुद्रण सामग्री">किताब र मुद्रण
+                                सामग्री</li>
+                            <li data-en="Financial and insurance services" data-ne="वित्तीय र बीमा सेवाहरू">वित्तीय र
+                                बीमा सेवाहरू</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-        </div><!-- /.calc-layout -->
-    </div><!-- /#tab-calculator -->
-
-    <!-- ── TAB: VAT Information ───────────────────────── -->
-    <div id="tab-info" class="tab-content">
-        <div class="info-grid">
-
-            <div class="info-card">
-                <div class="info-icon"><i class="fas fa-percent"></i></div>
-                <h3 data-en="Standard VAT Rate" data-ne="मानक भ्याट दर">मानक भ्याट दर</h3>
-                <p class="big-stat">13%</p>
-                <p data-en="Nepal charges a flat 13% VAT on most goods and services."
-                    data-ne="नेपालले अधिकांश वस्तु र सेवाहरूमा १३% को एकल भ्याट दर लागू गर्दछ।">
-                    नेपालले अधिकांश वस्तु र सेवाहरूमा १३% को एकल भ्याट दर लागू गर्दछ।
-                </p>
-            </div>
-
-            <div class="info-card">
-                <div class="info-icon"><i class="fas fa-store"></i></div>
-                <h3 data-en="VAT Registration Threshold" data-ne="भ्याट दर्ता सीमा">भ्याट दर्ता सीमा</h3>
-                <p class="big-stat">रू. ५०,००,०००</p>
-                <p data-en="Businesses with annual turnover above NPR 50,00,000 must register for VAT."
-                    data-ne="वार्षिक कारोबार रू. ५०,००,००० भन्दा बढी भएका व्यवसायहरूले भ्याट दर्ता गर्नुपर्छ।">
-                    वार्षिक कारोबार रू. ५०,००,००० भन्दा बढी भएका व्यवसायहरूले भ्याट दर्ता गर्नुपर्छ।
-                </p>
-            </div>
-
-            <div class="info-card">
-                <div class="info-icon"><i class="fas fa-calendar-days"></i></div>
-                <h3 data-en="VAT Filing Period" data-ne="भ्याट दाखिला अवधि">भ्याट दाखिला अवधि</h3>
-                <p class="big-stat" data-en="Monthly" data-ne="मासिक">मासिक</p>
-                <p data-en="VAT returns must be filed monthly within 25 days after the end of each month."
-                    data-ne="प्रत्येक महिना समाप्त भएको २५ दिनभित्र मासिक भ्याट विवरण दाखिला गर्नुपर्छ।">
-                    प्रत्येक महिना समाप्त भएको २५ दिनभित्र मासिक भ्याट विवरण दाखिला गर्नुपर्छ।
-                </p>
-            </div>
-
-            <div class="info-card wide">
-                <div class="info-icon"><i class="fas fa-ban"></i></div>
-                <h3 data-en="VAT-Exempt Goods & Services" data-ne="भ्याट छुट वस्तु र सेवाहरू">भ्याट छुट वस्तु र सेवाहरू
-                </h3>
-                <ul class="exempt-list">
-                    <li data-en="Basic food items (rice, flour, vegetables, etc.)"
-                        data-ne="आधारभूत खाद्य वस्तुहरू (चामल, पीठो, तरकारी आदि)">आधारभूत खाद्य वस्तुहरू (चामल, पीठो,
-                        तरकारी आदि)</li>
-                    <li data-en="Medical services and medicines" data-ne="चिकित्सा सेवा र औषधिहरू">चिकित्सा सेवा र
-                        औषधिहरू</li>
-                    <li data-en="Educational services" data-ne="शैक्षिक सेवाहरू">शैक्षिक सेवाहरू</li>
-                    <li data-en="Agricultural inputs" data-ne="कृषि सामग्रीहरू">कृषि सामग्रीहरू</li>
-                    <li data-en="Books and printed materials" data-ne="किताब र मुद्रण सामग्री">किताब र मुद्रण सामग्री
-                    </li>
-                    <li data-en="Financial and insurance services" data-ne="वित्तीय र बीमा सेवाहरू">वित्तीय र बीमा
-                        सेवाहरू</li>
-                </ul>
-            </div>
-
-        </div>
-    </div><!-- /#tab-info -->
-
-    <!-- ── TAB: Registration ──────────────────────────── -->
-    <div id="tab-registration" class="tab-content">
-        <div class="reg-steps">
-            <h2 data-en="How to Register for VAT in Nepal" data-ne="नेपालमा भ्याट दर्ता कसरी गर्ने">
-                नेपालमा भ्याट दर्ता कसरी गर्ने
-            </h2>
-
-            <div class="steps-list">
-                <div class="step">
-                    <div class="step-num">१</div>
-                    <div class="step-body">
-                        <h4 data-en="PAN Registration" data-ne="स्थायी लेखा नम्बर (PAN) दर्ता">स्थायी लेखा नम्बर (PAN)
-                            दर्ता</h4>
+            <div id="tab-registration" class="tab-content active" style="margin-top: 3rem;">
+                <h2 class="calculator-title" style="text-align: left; margin-bottom: 2rem;"
+                    data-en="How to Register for VAT" data-ne="भ्याट दर्ता कसरी गर्ने">भ्याट दर्ता कसरी गर्ने</h2>
+                <div class="slab-tables">
+                    <!-- Step 1 Card -->
+                    <div class="slab-table-card">
+                        <h3 data-en="1. PAN Registration" data-ne="१. स्थायी लेखा नम्बर (PAN) दर्ता">१. स्थायी लेखा
+                            नम्बर (PAN) दर्ता</h3>
                         <p data-en="Obtain a Permanent Account Number (PAN) from the Inland Revenue Department (IRD) if you don't already have one."
                             data-ne="यदि तपाईंसँग पहिले नै छैन भने आन्तरिक राजस्व विभाग (IRD) बाट स्थायी लेखा नम्बर (PAN) प्राप्त गर्नुहोस्।">
                             यदि तपाईंसँग पहिले नै छैन भने आन्तरिक राजस्व विभाग (IRD) बाट स्थायी लेखा नम्बर (PAN) प्राप्त
                             गर्नुहोस्।
                         </p>
                     </div>
-                </div>
-                <div class="step">
-                    <div class="step-num">२</div>
-                    <div class="step-body">
-                        <h4 data-en="Prepare Documents" data-ne="कागजातहरू तयार गर्नुहोस्">कागजातहरू तयार गर्नुहोस्</h4>
+
+                    <!-- Step 2 Card -->
+                    <div class="slab-table-card">
+                        <h3 data-en="2. Prepare Documents" data-ne="२. कागजातहरू तयार गर्नुहोस्">२. कागजातहरू तयार
+                            गर्नुहोस्</h3>
                         <p data-en="Business registration certificate, citizenship copy, PAN card, and recent bank statement."
                             data-ne="व्यवसाय दर्ता प्रमाणपत्र, नागरिकता प्रतिलिपि, PAN कार्ड, र भर्खरको बैंक स्टेटमेन्ट।">
                             व्यवसाय दर्ता प्रमाणपत्र, नागरिकता प्रतिलिपि, PAN कार्ड, र भर्खरको बैंक स्टेटमेन्ट।
                         </p>
                     </div>
-                </div>
-                <div class="step">
-                    <div class="step-num">३</div>
-                    <div class="step-body">
-                        <h4 data-en="Submit Application Online or In-Person"
-                            data-ne="अनलाइन वा व्यक्तिगत रूपमा आवेदन दिनुहोस्">
-                            अनलाइन वा व्यक्तिगत रूपमा आवेदन दिनुहोस्
-                        </h4>
+
+                    <!-- Step 3 Card -->
+                    <div class="slab-table-card">
+                        <h3 data-en="3. Submit Application" data-ne="३. आवेदन दिनुहोस्">३. आवेदन दिनुहोस्</h3>
                         <p data-en="File VAT registration through IRD's e-portal (ird.gov.np) or visit your nearest Tax Office."
                             data-ne="IRD को ई-पोर्टल (ird.gov.np) मार्फत वा नजिकको कर कार्यालयमा भ्याट दर्ताको लागि आवेदन दिनुहोस्।">
                             IRD को ई-पोर्टल (ird.gov.np) मार्फत वा नजिकको कर कार्यालयमा भ्याट दर्ताको लागि आवेदन
                             दिनुहोस्।
                         </p>
                     </div>
-                </div>
-                <div class="step">
-                    <div class="step-num">४</div>
-                    <div class="step-body">
-                        <h4 data-en="Receive VAT Certificate" data-ne="भ्याट प्रमाणपत्र प्राप्त गर्नुहोस्">
-                            भ्याट प्रमाणपत्र प्राप्त गर्नुहोस्
-                        </h4>
+
+                    <!-- Step 4 Card -->
+                    <div class="slab-table-card">
+                        <h3 data-en="4. Receive Certificate" data-ne="४. प्रमाणपत्र प्राप्त गर्नुहोस्">४. प्रमाणपत्र
+                            प्राप्त गर्नुहोस्</h3>
                         <p data-en="After verification, IRD will issue your VAT registration certificate. Display it at your business premises."
                             data-ne="प्रमाणीकरण पछि, IRD ले तपाईंको भ्याट दर्ता प्रमाणपत्र जारी गर्नेछ। यसलाई व्यवसाय परिसरमा प्रदर्शन गर्नुहोस्।">
                             प्रमाणीकरण पछि, IRD ले तपाईंको भ्याट दर्ता प्रमाणपत्र जारी गर्नेछ। यसलाई व्यवसाय परिसरमा
@@ -283,27 +123,153 @@
                         </p>
                     </div>
                 </div>
-            </div>
 
-            <div class="reg-note">
-                <i class="fas fa-link"></i>
-                <p>
-                    <span data-en="Official IRD Portal:" data-ne="आधिकारिक IRD पोर्टल:">आधिकारिक IRD पोर्टल:</span>
-                    <a href="https://ird.gov.np" target="_blank" rel="noopener">ird.gov.np</a>
-                </p>
+                <div class="reg-note"
+                    style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 8px; border-left: 4px solid var(--accent-teal);">
+                    <i class="fas fa-link" style="color: var(--accent-teal); margin-right: 0.5rem;"></i>
+                    <p style="display: inline; font-size: 14px; font-weight: 600;">
+                        <span data-en="Official IRD Portal:" data-ne="आधिकारिक IRD पोर्टल:">आधिकारिक IRD पोर्टल:</span>
+                        <a href="https://ird.gov.np" target="_blank" rel="noopener"
+                            style="color: var(--primary-light);">ird.gov.np</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div><!-- /#tab-registration -->
 
-</div><!-- /.calc-page -->
+        <!-- RIGHT SECTION: VAT Calculator -->
+        <div class="tax-form-section">
+            <h2 class="calculator-title" style="margin-bottom: 1.5rem;" data-en="VAT Calculator"
+                data-ne="भ्याट क्याल्कुलेटर">भ्याट क्याल्कुलेटर</h2>
+            <div class="tax-page">
+                <div class="tax-card">
+                    <div id="tab-calculator" class="tab-content active">
+                        <div class="calc-layout">
+                            <div class="calc-panel input-panel">
+                                <h2 class="panel-title">
+                                    <i class="fas fa-tags"></i>
+                                    <span data-en="Price Details" data-ne="मूल्य विवरण">मूल्य विवरण</span>
+                                </h2>
+                                <div class="form-group">
+                                    <label data-en="Calculation Type" data-ne="गणना प्रकार">गणना प्रकार</label>
+                                    <div class="radio-group">
+                                        <label class="radio-card active" id="label-add-vat">
+                                            <input type="radio" name="vat_mode" value="add" checked>
+                                            <i class="fas fa-plus"></i>
+                                            <span data-en="Add VAT to Price" data-ne="मूल्यमा भ्याट जोड्नुहोस्">मूल्यमा
+                                                भ्याट जोड्नुहोस्</span>
+                                        </label>
+                                        <label class="radio-card" id="label-extract-vat">
+                                            <input type="radio" name="vat_mode" value="extract">
+                                            <i class="fas fa-minus"></i>
+                                            <span data-en="Extract VAT from Price"
+                                                data-ne="मूल्यबाट भ्याट निकाल्नुहोस्">मूल्यबाट भ्याट निकाल्नुहोस्</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="vat_amount" id="vat-amount-label"
+                                        data-en="Amount (Exclusive of VAT) — NPR" data-ne="रकम (भ्याट बाहेक) — रू.">रकम
+                                        (भ्याट बाहेक) — रू.</label>
+                                    <div class="input-wrapper">
+                                        <span class="input-prefix">रू.</span>
+                                        <input type="number" id="vat_amount" placeholder="0" min="0">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label data-en="VAT Rate" data-ne="भ्याट दर">भ्याट दर</label>
+                                    <div class="radio-group small">
+                                        <label class="radio-card active" id="label-vat-13">
+                                            <input type="radio" name="vat_rate" value="13" checked>
+                                            <span>१३% (Standard)</span>
+                                        </label>
+                                        <label class="radio-card" id="label-vat-0">
+                                            <input type="radio" name="vat_rate" value="0">
+                                            <span data-en="0% (Exempt)" data-ne="०% (छुट)">०% (छुट)</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="calc-btn-container">
+                                    <button id="calc-btn" class="calc-btn">
+                                        <i class="fas fa-calculator"></i>
+                                        <span data-en="Calculate VAT" data-ne="भ्याट गणना गर्नुहोस्">भ्याट गणना
+                                            गर्नुहोस्</span>
+                                    </button>
+                                    <button id="reset-btn" class="reset-btn">
+                                        <i class="fas fa-rotate-left"></i>
+                                        <span data-en="Reset" data-ne="रिसेट">रिसेट</span>
+                                    </button>
+                                </div>
+                            </div>
 
-<div style="text-align:center; margin-top: 2rem;">
-    <a href="{% url 'tds' %}" class="tds-btn-nav" id="go-to-tds">
-        Go to TDS Calculator
-    </a>
+                            <div class="calc-panel result-panel">
+                                <h2 class="panel-title">
+                                    <i class="fas fa-receipt"></i>
+                                    <span data-en="VAT Breakdown" data-ne="भ्याट विवरण">भ्याट विवरण</span>
+                                </h2>
+                                <div id="result-placeholder" class="result-placeholder">
+                                    <p data-en="Enter an amount and click Calculate to see the VAT breakdown."
+                                        data-ne="रकम भर्नुहोस् र भ्याट विवरण हेर्न गणना गर्नुहोस् क्लिक गर्नुहोस्।">
+                                        रकम भर्नुहोस् र भ्याट विवरण हेर्न गणना गर्नुहोस् क्लिक गर्नुहोस्।
+                                    </p>
+                                </div>
+                                <div id="result-content" class="result-content hidden">
+                                    <div class="vat-result-grid">
+                                        <div class="vat-row">
+                                            <span data-en="Base Amount (excl. VAT)"
+                                                data-ne="आधार रकम (भ्याट बाहेक)">आधार रकम (भ्याट बाहेक)</span>
+                                            <span id="res-base">रू. ०</span>
+                                        </div>
+                                        <div class="vat-row accent">
+                                            <span data-en="VAT Amount (13%)" data-ne="भ्याट रकम (१३%)">भ्याट रकम
+                                                (१३%)</span>
+                                            <span id="res-vat">रू. ०</span>
+                                        </div>
+                                        <div class="vat-row total">
+                                            <span data-en="Total (incl. VAT)" data-ne="कुल (भ्याट सहित)">कुल (भ्याट
+                                                सहित)</span>
+                                            <span id="res-total">रू. ०</span>
+                                        </div>
+                                    </div>
+                                    <div class="vat-visual">
+                                        <div class="bar-label" data-en="VAT Proportion" data-ne="भ्याट अनुपात">भ्याट
+                                            अनुपात</div>
+                                        <div class="proportion-bar">
+                                            <div class="bar-base" id="bar-base"></div>
+                                            <div class="bar-vat" id="bar-vat"></div>
+                                        </div>
+                                        <div class="bar-legend">
+                                            <span><span class="dot base"></span>
+                                                <span data-en="Base Price" data-ne="आधार मूल्य">आधार मूल्य</span>
+                                            </span>
+                                            <span><span class="dot vat"></span>
+                                                <span data-en="VAT" data-ne="भ्याट">भ्याट</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <p class="disclaimer"
+                                        data-en="Standard VAT rate in Nepal is 13%. Certain goods and services like agriculture, education, health services etc. are not subject to VAT."
+                                        data-ne="नेपालमा मानक भ्याट दर १३% हो। केही वस्तु र सेवाहरू जस्तै कृषि उत्पादनमा, शैक्षिक सेवामा, स्वास्थ्य सेवामा आदिमा कर छुट छन्।">
+                                        नेपालमा मानक भ्याट दर १३% हो। केही वस्तु र सेवाहरू जस्तै कृषि उत्पादनमा, शैक्षिक
+                                        सेवामा, स्वास्थ्य सेवामा ,आदिमा कर छुट छन्।
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align:center; margin-top: 2rem; margin-bottom: 3rem;">
+        <a href="{% url 'tds' %}" class="tds-btn-nav" id="go-to-tds">
+            Go to TDS Calculator
+        </a>
+    </div>
+
 </div>
 {% endblock %}
 
 {% block scripts %}
-<script src="{%static 'calculators/vat.js'}"></script>
+<script src="{% static 'vat.js' %}"></script>
 {% endblock %}
