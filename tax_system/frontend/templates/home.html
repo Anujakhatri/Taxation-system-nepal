@@ -68,6 +68,17 @@
       <a href="{% url 'vat' %}" class="card-link" data-en="View Info →" data-ne="जानकारी हेर्नुहोस् →">जानकारी
         हेर्नुहोस् →</a>
     </div>
+
+    <div class="card">
+      <div class="card-icon">🫪</div>
+      <h3 data-en="TDS Calculator" data-ne="TDS क्याल्कुलेटर">TDS क्याल्कुलेटर</h3>
+      <p data-en="Calculate TDS on rent, contract, dividend, interest etc."
+        data-ne="भाडा, ठेक्का, लाभांश, ब्याज लगायत विभिन्न भुक्तानीमा स्रोतमा कर कट्टी गणना गर्नुहोस्।">भाडा, ठेक्का,
+        लाभांश, ब्याज लगायत विभिन्न भुक्तानीमा स्रोतमा कर कट्टी गणना गर्नुहोस्।</p>
+      <a href="{% url 'tds' %}" class="card-link" data-en="View Info →" data-ne="जानकारी हेर्नुहोस् →">जानकारी
+        हेर्नुहोस् →</a>
+    </div>
+
   </div>
 </section>
 
@@ -147,15 +158,5 @@
 
 {% endblock %}
 {% block scripts %}
-<script src="{% static 'home.js' %}">
-  document.addEventListener("DOMContentLoaded", function () {
-    const btn = document.getElementById("calc-tax-btn");
-
-    if (btn) {
-      btn.addEventListener("click", function () {
-        window.location.href = "/income-tax/";
-      });
-    }
-  });
-</script>
+<script src="{% static 'home.js' %}"></script>
 {% endblock %}

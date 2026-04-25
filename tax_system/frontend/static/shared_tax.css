@@ -78,11 +78,6 @@
     transition: border-color 0.3s;
 }
 
-.form-group input::placeholder {
-    color: #94a3b8;
-    opacity: 1;
-}
-
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
@@ -90,22 +85,32 @@
 }
 
 .calc-btn {
+    width: 100%;
+    padding: 15px;
     background: var(--primary-light);
-    color: white;
-    padding: 14px;
+    color: white !important;
     border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    border-radius: 10px;
     font-weight: 700;
     font-size: 16px;
-    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(0, 56, 147, 0.15);
 }
 
 .calc-btn:hover {
     background: var(--primary-dark);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 45, 114, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 56, 147, 0.25);
+}
+
+.calc-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(0, 56, 147, 0.2);
 }
 
 .form-group small {
