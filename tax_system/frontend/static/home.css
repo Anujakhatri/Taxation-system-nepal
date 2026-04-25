@@ -125,9 +125,11 @@ body.nepali-font {
 
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 6rem;
+    /* Force exactly 2 columns for a 2x2 layout on desktop */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin: 0 auto 6rem;
+    max-width: 900px;
 }
 
 .card {
@@ -337,6 +339,7 @@ body.nepali-font {
     }
 
     .cards-container {
+        grid-template-columns: 1fr;
         gap: 1.5rem;
         margin-bottom: 3rem;
     }
@@ -394,5 +397,7 @@ body.nepali-font {
         font-size: 1.5rem;
     }
 }
-html { scroll-behavior: smooth; }
 
+html {
+    scroll-behavior: smooth;
+}

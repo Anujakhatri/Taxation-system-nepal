@@ -5,55 +5,156 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'home.css' %}" />
+<link rel="stylesheet" href="{% static 'shared_tax.css' %}" />
 <link rel="stylesheet" href="{% static 'tds_calculation.css' %}" />
 {% endblock %}
 
 {% block content %}
-<div class="tax-page">
-    <div class="tax-card">
-        <h2 data-en="TDS Calculator" data-ne="टीडीएस क्याल्कुलेटर">TDS Calculator</h2>
-        <p class="subtitle" data-en="Calculate Tax Deducted at Source (TDS) based on Nepal's tax laws"
-           data-ne="नेपालको कर कानून अनुसार स्रोतमा कर कट्टी (TDS) गणना गर्नुहोस्">
+
+<div class="tax-layout">
+    <!-- LEFT SECTION: TDS Reference -->
+    <div class="slab-reference">
+        <h2 data-en="TDS Rates Reference — Nepal (FY 2082/83)" data-ne="TDS दर सन्दर्भ — नेपाल (आ.व. २०८२/८३)">
+            TDS दर सन्दर्भ — नेपाल (आ.व. २०८२/८३)
+        </h2>
+
+        <div class="slab-tables">
+            <!-- Rates Card -->
+            <div class="slab-table-card">
+                <h3 data-en="Common TDS Rates" data-ne="प्रमुख TDS दरहरू">प्रमुख TDS दरहरू</h3>
+                <table class="tax-table">
+                    <thead>
+                        <tr>
+                            <th data-en="Payment Type" data-ne="भुक्तानी प्रकार">भुक्तानी प्रकार</th>
+                            <th data-en="TDS Rate" data-ne="TDS दर">TDS दर</th>
+                            <th data-en="Section" data-ne="धारा">धारा</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-en="Salary / Employment" data-ne="तलब / रोजगार आय">तलब / रोजगार आय</td>
+                            <td data-en="SLAB-WISE" data-ne="स्ल्याब अनुसार">SLAB-WISE</td>
+                            <td>87</td>
+                        </tr>
+                        <tr>
+                            <td data-en="House Rent (Individual)" data-ne="घर भाडा (व्यक्तिगत)">घर भाडा (व्यक्तिगत)</td>
+                            <td>10%</td>
+                            <td>88</td>
+                        </tr>
+                        <tr>
+                            <td data-en="Contract / Service" data-ne="ठेक्का / सेवा भुक्तानी">ठेक्का / सेवा भुक्तानी
+                            </td>
+                            <td>1.5% – 15%</td>
+                            <td>88</td>
+                        </tr>
+                        <tr>
+                            <td data-en="Consultancy Fee" data-ne="परामर्श शुल्क">परामर्श शुल्क</td>
+                            <td>15%</td>
+                            <td>88</td>
+                        </tr>
+                        <tr>
+                            <td data-en="Bank Interest" data-ne="बैंक ब्याज">बैंक ब्याज</td>
+                            <td>5%</td>
+                            <td>88</td>
+                        </tr>
+                        <tr>
+                            <td data-en="Dividend" data-ne="लाभांश">लाभांश</td>
+                            <td>5%</td>
+                            <td>88</td>
+                        </tr>
+                        <tr>
+                            <td data-en="Windfall Gain (Lottery)" data-ne="आकस्मिक लाभ (लोटरी)">आकस्मिक लाभ (लोटरी)</td>
+                            <td>25%</td>
+                            <td>88</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="slab-note" style="margin-top:10px;"
+                    data-en="* Rates may vary based on residency and specific IRD directives."
+                    data-ne="* आवासीय स्थिति र IRD का विशेष निर्देशनहरू अनुसार दरहरू फरक हुन सक्छन्।">
+                    * आवासीय स्थिति र IRD का विशेष निर्देशनहरू अनुसार दरहरू फरक हुन सक्छन्।
+                </p>
+            </div>
+
+            <!-- Compliance Card -->
+            <div class="slab-table-card">
+                <h3 data-en="TDS Compliance Rules" data-ne="TDS अनुपालन नियमहरू">TDS अनुपालन नियमहरू</h3>
+                <div class="compliance-info" style="font-size: 14px; color: var(--text-muted); line-height: 1.8;">
+                    <p>•
+                        <strong data-en="Deposit Deadline:" data-ne="जम्मा गर्ने म्याद:">जम्मा गर्ने म्याद:</strong>
+                        <span data-en="Within 25 days from the end of the month."
+                            data-ne="महिना समाप्त भएको २५ दिनभित्र।">महिना समाप्त भएको २५ दिनभित्र।</span>
+                    </p>
+                    <p>•
+                        <strong data-en="Filing:" data-ne="दाखिला:">दाखिला:</strong>
+                        <span data-en="Monthly filing through IRD e-portal (E-filing)."
+                            data-ne="IRD ई-पोर्टल मार्फत मासिक।">IRD ई-पोर्टल मार्फत मासिक।</span>
+                    </p>
+                    <p>•
+                        <strong data-en="Certificate:" data-ne="प्रमाणपत्र:">प्रमाणपत्र:</strong>
+                        <span data-en="Deductor must issue a TDS certificate to the payee."
+                            data-ne="कट्टी गर्नेले अनिवार्य रूपमा दिनुपर्ने।">कट्टी गर्नेले अनिवार्य रूपमा
+                            दिनुपर्ने।</span>
+                    </p>
+                    <p>•
+                        <strong data-en="Penalty:" data-ne="जरिवाना:">जरिवाना:</strong>
+                        <span data-en="Delay in deposit or filing may result in fines and interest charges."
+                            data-ne="समयमा नबुझाएमा जरिवाना र ब्याज।">समयमा नबुझाएमा जरिवाना र ब्याज।</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT SECTION: TDS Calculator -->
+    <div class="tax-page">
+        <h2 class="calculator-title" data-en="TDS Calculator" data-ne="टीडीएस क्याल्कुलेटर">
+            TDS Calculator
+        </h2>
+        <p class="calculator-subtitle" data-en="Calculate Tax Deducted at Source (TDS) based on Nepal's tax laws"
+            data-ne="नेपालको कर कानून अनुसार स्रोतमा कर कट्टी (TDS) गणना गर्नुहोस्">
             Calculate Tax Deducted at Source (TDS) based on Nepal's tax laws
         </p>
 
-        <form class="tax-form" method="POST" action="{% url 'tds' %}">
-            {% csrf_token %}
-            
-            <div class="form-group">
-                <label>
-                    <span data-en="Payment Type" data-ne="भुक्तानी प्रकार">Payment Type</span>
-                    <span class="required">*</span>
-                </label>
-                <select name="type" required>
-                    <option value="" data-en="Select Payment Type" data-ne="भुक्तानी प्रकार चयन गर्नुहोस्">Select Payment Type</option>
-                    <option value="salary" data-en="Salary" data-ne="तलब">Salary</option>
-                    <option value="rent" data-en="Rent" data-ne="भाडा">Rent</option>
-                    <option value="service" data-en="Service" data-ne="सेवा">Service</option>
-                    <option value="dividend" data-en="Dividend" data-ne="लाभांश">Dividend</option>
-                    <option value="interest" data-en="Interest" data-ne="ब्याज">Interest</option>
-                </select>
-            </div>
+        <div class="tax-card">
+            <form class="tax-form" method="POST" action="{% url 'tds' %}">
+                {% csrf_token %}
 
-            <div class="form-group">
-                <label>
-                    <span data-en="Amount" data-ne="रकम">Amount</span>
-                    <span class="required">*</span>
-                </label>
-                <input type="number" name="amount" required 
-                       placeholder="Enter amount" 
-                       data-en-placeholder="Enter amount" 
-                       data-ne-placeholder="रकम प्रविष्ट गर्नुहोस्">
-            </div>
+                <div class="form-group">
+                    <label>
+                        <span data-en="Payment Type" data-ne="भुक्तानी प्रकार">Payment Type</span>
+                        <span style="color: red">*</span>
+                    </label>
+                    <select name="type" required>
+                        <option value="" data-en="Select Payment Type" data-ne="भुक्तानी प्रकार चयन गर्नुहोस्">Select
+                            Payment Type</option>
+                        <option value="salary" data-en="Salary" data-ne="तलब">Salary</option>
+                        <option value="rent" data-en="Rent" data-ne="भाडा">Rent</option>
+                        <option value="service" data-en="Service" data-ne="सेवा">Service</option>
+                        <option value="dividend" data-en="Dividend" data-ne="लाभांश">Dividend</option>
+                        <option value="interest" data-en="Interest" data-ne="ब्याज">Interest</option>
+                    </select>
+                </div>
 
-            <button type="submit" class="calc-btn" data-en="Calculate TDS" data-ne="टीडीएस गणना गर्नुहोस्">
-                Calculate TDS
-            </button>
-        </form>
+                <div class="form-group">
+                    <label>
+                        <span data-en="Amount" data-ne="रकम">Amount</span>
+                        <span style="color: red">*</span>
+                    </label>
+                    <input type="number" name="amount" required placeholder="Enter amount"
+                        data-en-placeholder="Enter amount" data-ne-placeholder="रकम प्रविष्ट गर्नुहोस्">
+                </div>
 
-        <div id="tds-result-container"></div>
+                <button type="submit" class="calc-btn" data-en="Calculate TDS" data-ne="टीडीएस गणना गर्नुहोस्">
+                    Calculate TDS
+                </button>
+            </form>
+
+            <div id="tds-result-container"></div>
+        </div>
     </div>
 </div>
+
 {% endblock %}
 
 {% block scripts %}
