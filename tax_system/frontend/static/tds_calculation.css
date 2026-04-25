@@ -83,14 +83,18 @@
 
 /* Placeholder color styling */
 ::placeholder {
-    color: #6c757d; /* Light dark / Grayish */
-    opacity: 1; /* Firefox fix */
+    color: #6c757d;
+    /* Light dark / Grayish */
+    opacity: 1;
+    /* Firefox fix */
 }
 
-::-ms-input-placeholder { /* Edge */
+::-ms-input-placeholder {
+    /* Edge */
     color: #6c757d;
 }
 
-:-ms-input-placeholder { /* IE 10-11 */
+:-ms-input-placeholder {
+    /* IE 10-11 */
     color: #6c757d;
 }

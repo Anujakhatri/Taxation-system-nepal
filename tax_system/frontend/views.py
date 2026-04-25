@@ -39,7 +39,7 @@ def calculate_tds(request):
             "net": net_amount
         }
 
-    return render(request, "tds.html", {"result": result})
+    return render(request, "tds_calculation.html", {"result": result})
 
 def income_tax(request):
     result = None

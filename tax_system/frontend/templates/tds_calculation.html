@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} TDS Calculator - Tax Information Portal {% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'home.css' %}" />
+<link rel="stylesheet" href="{% static 'tds_calculation.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="tax-page">
+    <div class="tax-card">
+        <h2 data-en="TDS Calculator" data-ne="टीडीएस क्याल्कुलेटर">TDS Calculator</h2>
+        <p class="subtitle" data-en="Calculate Tax Deducted at Source (TDS) based on Nepal's tax laws"
+           data-ne="नेपालको कर कानून अनुसार स्रोतमा कर कट्टी (TDS) गणना गर्नुहोस्">
+            Calculate Tax Deducted at Source (TDS) based on Nepal's tax laws
+        </p>
+
+        <form class="tax-form" method="POST" action="{% url 'tds' %}">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label>
+                    <span data-en="Payment Type" data-ne="भुक्तानी प्रकार">Payment Type</span>
+                    <span class="required">*</span>
+                </label>
+                <select name="type" required>
+                    <option value="" data-en="Select Payment Type" data-ne="भुक्तानी प्रकार चयन गर्नुहोस्">Select Payment Type</option>
+                    <option value="salary" data-en="Salary" data-ne="तलब">Salary</option>
+                    <option value="rent" data-en="Rent" data-ne="भाडा">Rent</option>
+                    <option value="service" data-en="Service" data-ne="सेवा">Service</option>
+                    <option value="dividend" data-en="Dividend" data-ne="लाभांश">Dividend</option>
+                    <option value="interest" data-en="Interest" data-ne="ब्याज">Interest</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <span data-en="Amount" data-ne="रकम">Amount</span>
+                    <span class="required">*</span>
+                </label>
+                <input type="number" name="amount" required 
+                       placeholder="Enter amount" 
+                       data-en-placeholder="Enter amount" 
+                       data-ne-placeholder="रकम प्रविष्ट गर्नुहोस्">
+            </div>
+
+            <button type="submit" class="calc-btn" data-en="Calculate TDS" data-ne="टीडीएस गणना गर्नुहोस्">
+                Calculate TDS
+            </button>
+        </form>
+
+        {% if result %}
+        <div class="result-box">
+            <h3 data-en="Calculation Result" data-ne="गणना नतिजा">Calculation Result</h3>
+            
+            <div class="result-row">
+                <b data-en="Payment Type:" data-ne="भुक्तानी प्रकार:">Payment Type:</b>
+                <span 
+                    {% if result.type == 'salary' %} data-en="Salary" data-ne="तलब"
+                    {% elif result.type == 'rent' %} data-en="Rent" data-ne="भाडा"
+                    {% elif result.type == 'service' %} data-en="Service" data-ne="सेवा"
+                    {% elif result.type == 'dividend' %} data-en="Dividend" data-ne="लाभांश"
+                    {% elif result.type == 'interest' %} data-en="Interest" data-ne="ब्याज"
+                    {% endif %}
+                >{{ result.type|title }}</span>
+            </div>
+
+            <div class="result-row">
+                <b data-en="Base Amount:" data-ne="कुल रकम:">Base Amount:</b>
+                <span>Rs. {{ result.amount }}</span>
+            </div>
+
+            <div class="result-row">
+                <b data-en="TDS Rate:" data-ne="टीडीएस दर:">TDS Rate:</b>
+                <span>{{ result.rate }}%</span>
+            </div>
+
+            <div class="result-row">
+                <b data-en="TDS Deducted:" data-ne="कट्टा रकम:">TDS Deducted:</b>
+                <span>Rs. {{ result.tds }}</span>
+            </div>
+
+            <div class="result-row total">
+                <b data-en="Net Payable:" data-ne="शुद्ध भुक्तानी:">Net Payable:</b>
+                <span>Rs. {{ result.net }}</span>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,37 +1,26 @@
-{% extends 'base.html' %} {% load static %} {% block title %} नेपाल कर जानकारी -
-Tax Information Portal{% endblock %} {% block stylesheets %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} नेपाल कर जानकारी - Tax Information Portal {% endblock %}
+{% block stylesheets %}
 <link rel="stylesheet" href="{% static 'home.css' %}" />
-{% endblock %} {% block content %}
+{% endblock %}
+{% block content %}
 
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-content">
-    <h1
-      data-en="Understand Nepal's Taxation System"
-      data-ne="नेपालको कर संरचना जानुहोस्"
-    >
+    <h1 data-en="Understand Nepal's Taxation System" data-ne="नेपालको कर संरचना जानुहोस्">
       नेपालको कर संरचना जान्नुहोस्
     </h1>
-    <div
-      style="margin-bottom: 2rem; font-style: italic; opacity: 0.9"
+    <div style="margin-bottom: 2rem; font-style: italic; opacity: 0.9"
       data-en="Informational platform based on Nepal tax laws."
-      data-ne="नेपालको कर कानूनमा आधारित जानकारीमूलक प्लेटफर्म।"
-    >
+      data-ne="नेपालको कर कानूनमा आधारित जानकारीमूलक प्लेटफर्म।">
       नेपालको कर कानूनमा आधारित जानकारीमूलक प्लेटफर्म।
     </div>
-    <button
-      id="calc-tax-btn"
-      class="cal-button"
-      data-en="Calculate Tax"
-      data-ne="कर गणना गर्नुहोस्"
-    >
+    <button id="calc-tax-btn" class="cal-button" data-en="Calculate Tax" data-ne="कर गणना गर्नुहोस्">
       कर गणना गर्नुहोस्
     </button>
-    <button
-      class="cal-button secondary"
-      data-en="View Tax Guide"
-      data-ne="कर गाइड हेर्नुहोस्"
-    >
+    <button class="cal-button secondary" data-en="View Tax Guide" data-ne="कर गाइड हेर्नुहोस्">
       कर गाइड हेर्नुहोस्
     </button>
   </div>
@@ -45,60 +34,39 @@ Tax Information Portal{% endblock %} {% block stylesheets %}
       <h3 data-en="Income Tax Calculator" data-ne="आयकर क्याल्कुलेटर">
         आयकर क्याल्कुलेटर
       </h3>
-      <p
-        data-en="Compute your personal tax liability instantly. Supports all deductions and rebates."
-        data-ne="तपाईंको व्यक्तिगत कर दायित्व तुरुन्तै गणना गर्नुहोस्। सबै कट्टा र छुटहरूलाई समर्थन गर्दछ।"
-      >
+      <p data-en="Compute your personal tax liability instantly. Supports all deductions and rebates."
+        data-ne="तपाईंको व्यक्तिगत कर दायित्व तुरुन्तै गणना गर्नुहोस्। सबै कट्टा र छुटहरूलाई समर्थन गर्दछ।">
         तपाईंको व्यक्तिगत कर दायित्व तुरुन्तै गणना गर्नुहोस्। सबै कट्टा र
         छुटहरूलाई समर्थन गर्दछ।
       </p>
-      <a
-        href="{% url 'income-tax' %}"
-        class="card-link"
-        data-en="Calculate Now →"
-        data-ne="अहिले गणना गर्नुहोस् →"
-        >अहिले गणना गर्नुहोस् →</a
-      >
+      <a href="{% url 'income-tax' %}" class="card-link" data-en="Calculate Now →"
+        data-ne="अहिले गणना गर्नुहोस् →">अहिले गणना गर्नुहोस् →</a>
     </div>
     <div class="card">
       <div class="card-icon">🏢</div>
       <h3 data-en="Corporate Tax Calculator" data-ne="संस्थागत कर क्याल्कुलेटर">
         संस्थागत कर क्याल्कुलेटर
       </h3>
-      <p
-        data-en="Calculate corporate taxes with applicable rates for different types of industries."
-        data-ne="विभिन्न प्रकारका उद्योग र व्यवसायहरूको लागि लागू दरहरूको साथ संस्थागत कर गणना गर्नुहोस्।"
-      >
+      <p data-en="Calculate corporate taxes with applicable rates for different types of industries."
+        data-ne="विभिन्न प्रकारका उद्योग र व्यवसायहरूको लागि लागू दरहरूको साथ संस्थागत कर गणना गर्नुहोस्।">
         विभिन्न प्रकारका उद्योग र व्यवसायहरूको लागि लागू दरहरूको साथ संस्थागत कर
         गणना गर्नुहोस्।
       </p>
-      <a
-        href="{% url 'corporate-tax' %}"
-        class="card-link"
-        data-en="Calculate Now →"
-        data-ne="अहिले गणना गर्नुहोस् →"
-        >अहिले गणना गर्नुहोस् →</a
-      >
+      <a href="{% url 'corporate-tax' %}" class="card-link" data-en="Calculate Now →"
+        data-ne="अहिले गणना गर्नुहोस् →">अहिले गणना गर्नुहोस् →</a>
     </div>
     <div class="card">
       <div class="card-icon">𝍑</div>
       <h3 data-en="VAT Information" data-ne="भ्याट सम्बन्धी जानकारी">
         भ्याट सम्बन्धी जानकारी
       </h3>
-      <p
-        data-en="Details about Value Added Tax limits, registration processes, and compliance requirements."
-        data-ne="मूल्य अभिवृद्धि कर (VAT) सीमाहरू, दर्ता प्रक्रियाहरू, र अनुपालन आवश्यकताहरू बारे विवरणहरू।"
-      >
+      <p data-en="Details about Value Added Tax limits, registration processes, and compliance requirements."
+        data-ne="मूल्य अभिवृद्धि कर (VAT) सीमाहरू, दर्ता प्रक्रियाहरू, र अनुपालन आवश्यकताहरू बारे विवरणहरू।">
         मूल्य अभिवृद्धि कर (VAT) सीमाहरू, दर्ता प्रक्रियाहरू, र अनुपालन
         आवश्यकताहरू बारे विवरणहरू।
       </p>
-      <a
-        href="{% url 'vat' %}"
-        class="card-link"
-        data-en="View Info →"
-        data-ne="जानकारी हेर्नुहोस् →"
-        >जानकारी हेर्नुहोस् →</a
-      >
+      <a href="{% url 'vat' %}" class="card-link" data-en="View Info →" data-ne="जानकारी हेर्नुहोस् →">जानकारी
+        हेर्नुहोस् →</a>
     </div>
   </div>
 </section>
@@ -106,18 +74,11 @@ Tax Information Portal{% endblock %} {% block stylesheets %}
 <!-- Features Section -->
 <section class="features">
   <div class="features-container">
-    <h2
-      class="section-title"
-      data-en="Why Choose this site?"
-      data-ne="यो साईट जो किन त?"
-    >
+    <h2 class="section-title" data-en="Why Choose this site?" data-ne="यो साईट जो किन त?">
       Why Choose Us?
     </h2>
-    <p
-      class="section-subtitle"
-      data-en="Everything you need for tax compliance"
-      data-ne="तपाईंलाई कर अनुपालनको लागि चाहिने सबै कुरा"
-    >
+    <p class="section-subtitle" data-en="Everything you need for tax compliance"
+      data-ne="तपाईंलाई कर अनुपालनको लागि चाहिने सबै कुरा">
       Everything you need for tax compliance
     </p>
 
@@ -127,10 +88,8 @@ Tax Information Portal{% endblock %} {% block stylesheets %}
         <h3 data-en="Instant Results" data-ne="तत्काल नतिजा">
           Instant Results
         </h3>
-        <p
-          data-en="Get accurate calculations in seconds without complex forms or lengthy processes."
-          data-ne="जटिल फारम वा लामो प्रक्रियाहरू बिना सेकेन्डमा सही गणनाहरू प्राप्त गर्नुहोस्।"
-        >
+        <p data-en="Get accurate calculations in seconds without complex forms or lengthy processes."
+          data-ne="जटिल फारम वा लामो प्रक्रियाहरू बिना सेकेन्डमा सही गणनाहरू प्राप्त गर्नुहोस्।">
           Get accurate calculations in seconds without complex forms or lengthy
           processes.
         </p>
@@ -138,10 +97,8 @@ Tax Information Portal{% endblock %} {% block stylesheets %}
       <div class="feature">
         <div class="feature-icon"><i class="fas fa-globe"></i></div>
         <h3 data-en="Bilingual" data-ne="द्विभाषी">Bilingual</h3>
-        <p
-          data-en="Available in English and Nepali for your convenience and clarity."
-          data-ne="तपाईंको सुविधा र स्पष्टताको लागि अंग्रेजी र नेपालीमा उपलब्ध छ।"
-        >
+        <p data-en="Available in English and Nepali for your convenience and clarity."
+          data-ne="तपाईंको सुविधा र स्पष्टताको लागि अंग्रेजी र नेपालीमा उपलब्ध छ।">
           Available in English and Nepali for your convenience and clarity.
         </p>
       </div>
@@ -152,10 +109,8 @@ Tax Information Portal{% endblock %} {% block stylesheets %}
         <h3 data-en="Mobile Friendly" data-ne="मोबाइल मैत्री">
           Mobile Friendly
         </h3>
-        <p
-          data-en="Access from any device - desktop, tablet, or smartphone anytime, anywhere."
-          data-ne="कुनै पनि उपकरणबाट पहुँच गर्नुहोस् - डेस्कटप, ट्याब्लेट, वा स्मार्टफोन कुनै पनि समय, कहीं पनि।"
-        >
+        <p data-en="Access from any device - desktop, tablet, or smartphone anytime, anywhere."
+          data-ne="कुनै पनि उपकरणबाट पहुँच गर्नुहोस् - डेस्कटप, ट्याब्लेट, वा स्मार्टफोन कुनै पनि समय, कहीं पनि।">
           Access from any device - desktop, tablet, or smartphone anytime,
           anywhere.
         </p>
@@ -163,10 +118,8 @@ Tax Information Portal{% endblock %} {% block stylesheets %}
       <div class="feature">
         <div class="feature-icon"><i class="fas fa-lock"></i></div>
         <h3 data-en="100% Secure" data-ne="१००% सुरक्षित">100% Secure</h3>
-        <p
-          data-en="Your data is never stored. All calculations happen locally in your browser."
-          data-ne="तपाईंको डाटा कहिल्यै भण्डार गरिएको छैन। सबै गणनाहरू तपाईंको ब्राउजरमा स्थानीय रूपमा हुन्छन्।"
-        >
+        <p data-en="Your data is never stored. All calculations happen locally in your browser."
+          data-ne="तपाईंको डाटा कहिल्यै भण्डार गरिएको छैन। सबै गणनाहरू तपाईंको ब्राउजरमा स्थानीय रूपमा हुन्छन्।">
           Your data is never stored. All calculations happen locally in your
           browser.
         </p>
@@ -178,40 +131,31 @@ Tax Information Portal{% endblock %} {% block stylesheets %}
 <!-- CallToAction Section -->
 <section class="cal-section">
   <div class="cal-section-content">
-    <h2
-      data-en="Ready to Calculate Your Taxes?"
-      data-ne="आफ्नो कर गणना गर्न तयार हुनुहुन्छ?"
-    >
+    <h2 data-en="Ready to Calculate Your Taxes?" data-ne="आफ्नो कर गणना गर्न तयार हुनुहुन्छ?">
       Ready to Calculate Your Taxes?
     </h2>
-    <p
-      data-en="Start with our income tax calculator or explore our comprehensive tax guides."
-      data-ne="हाम्रो आयकर क्याल्कुलेटरबाट सुरु गर्नुहोस् वा हाम्रो विस्तृत कर निर्देशिकाहरू अन्वेषण गर्नुहोस्।"
-    >
+    <p data-en="Start with our income tax calculator or explore our comprehensive tax guides."
+      data-ne="हाम्रो आयकर क्याल्कुलेटरबाट सुरु गर्नुहोस् वा हाम्रो विस्तृत कर निर्देशिकाहरू अन्वेषण गर्नुहोस्।">
       Start with our income tax calculator or explore our comprehensive tax
       guides.
     </p>
-    <button
-      id="get-started-btn"
-      class="cal-button"
-      data-en="Get Started Now"
-      data-ne="अहिले नै सुरु गर्नुहोस्"
-    >
+    <button id="get-started-btn" class="cal-button" data-en="Get Started Now" data-ne="अहिले नै सुरु गर्नुहोस्">
       Get Started Now
     </button>
   </div>
 </section>
 
-{% endblock %} {% block scripts %}
+{% endblock %}
+{% block scripts %}
 <script src="{% static 'home.js' %}">
-      document.addEventListener("DOMContentLoaded", function () {
-      const btn = document.getElementById("calc-tax-btn");
+  document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("calc-tax-btn");
 
-      if (btn) {
-          btn.addEventListener("click", function () {
-              window.location.href = "/income-tax/";
-          });
-      }
+    if (btn) {
+      btn.addEventListener("click", function () {
+        window.location.href = "/income-tax/";
+      });
+    }
   });
 </script>
 {% endblock %}
