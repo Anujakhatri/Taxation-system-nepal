@@ -60,6 +60,10 @@ nav {
     align-items: center;
 }
 
+.nav-auth-start {
+    margin-left: 1.5rem;
+}
+
 nav a {
     color: white;
     text-decoration: none;
@@ -162,6 +166,10 @@ nav a:hover::after {
 
     nav.active {
         display: flex;
+    }
+
+    .nav-auth-start {
+        margin-left: 0;
     }
 
     nav a {

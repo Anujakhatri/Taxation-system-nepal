@@ -51,43 +51,11 @@
             </button>
         </form>
 
-        {% if result %}
-        <div class="result-box">
-            <h3 data-en="Calculation Result" data-ne="गणना नतिजा">Calculation Result</h3>
-            
-            <div class="result-row">
-                <b data-en="Payment Type:" data-ne="भुक्तानी प्रकार:">Payment Type:</b>
-                <span 
-                    {% if result.type == 'salary' %} data-en="Salary" data-ne="तलब"
-                    {% elif result.type == 'rent' %} data-en="Rent" data-ne="भाडा"
-                    {% elif result.type == 'service' %} data-en="Service" data-ne="सेवा"
-                    {% elif result.type == 'dividend' %} data-en="Dividend" data-ne="लाभांश"
-                    {% elif result.type == 'interest' %} data-en="Interest" data-ne="ब्याज"
-                    {% endif %}
-                >{{ result.type|title }}</span>
-            </div>
-
-            <div class="result-row">
-                <b data-en="Base Amount:" data-ne="कुल रकम:">Base Amount:</b>
-                <span>Rs. {{ result.amount }}</span>
-            </div>
-
-            <div class="result-row">
-                <b data-en="TDS Rate:" data-ne="टीडीएस दर:">TDS Rate:</b>
-                <span>{{ result.rate }}%</span>
-            </div>
-
-            <div class="result-row">
-                <b data-en="TDS Deducted:" data-ne="कट्टा रकम:">TDS Deducted:</b>
-                <span>Rs. {{ result.tds }}</span>
-            </div>
-
-            <div class="result-row total">
-                <b data-en="Net Payable:" data-ne="शुद्ध भुक्तानी:">Net Payable:</b>
-                <span>Rs. {{ result.net }}</span>
-            </div>
-        </div>
-        {% endif %}
+        <div id="tds-result-container"></div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'calculators/tds.js' %}"></script>
 {% endblock %}

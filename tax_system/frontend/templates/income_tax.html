@@ -18,8 +18,7 @@
       Calculate your tax easily using Nepal tax system
     </p>
 
-    <!-- FORM UI (placeholder for now) -->
-    <form class="tax-form" method="POST" action="{% url 'income-tax' %}">
+    <form class="tax-form">
       {% csrf_token %}
       <div class="form-group">
         <label>
@@ -48,9 +47,12 @@
           <span data-en="Employment Type" data-ne="रोजगारीको प्रकार">Employment Type</span>
           <span style="color: red">*</span>
         </label>
+
         <small data-en="Select your main source of income" data-ne="आफ्नो आम्दानीको मुख्य स्रोत चयन गर्नुहोस्">Select
           your main source of income</small>
+
         <select name="employment_type" required>
+
           <option value="" data-en="Select Employment Type" data-ne="रोजगारीको प्रकार चयन गर्नुहोस्">Select Employment
             Type</option>
           <option value="salary" data-en="Salaried (Government/Private Job)" data-ne="तलब आउने(सरकारी/निजी)">Salaried
@@ -63,51 +65,95 @@
           <option value="foreign_employment" data-en="Foreign Employment" data-ne="वैदेशिक रोजगार">Foreign Employment
           </option>
           <option value="pension" data-en="Pension Income" data-ne="पेन्सन आम्दानी">Pension Income</option>
+
         </select>
       </div>
-
       <button type="submit" class="calc-btn" data-en="Calculate Tax" data-ne="कर गणना गर्नुहोस्">Calculate Tax</button>
     </form>
 
-    <!-- Result -->
-    {% if result %}
-    <div class="result-box">
-      <h3 data-en="Result" data-ne="नतिजा">Result</h3>
-
-      <p>
-        <b data-en="Type:" data-ne="प्रकार:">Type:</b>
-        <span 
-          {% if result.type == 'salary' %} data-en="Salaried" data-ne="तलबभोगी"
-          {% elif result.type == 'self_employed' %} data-en="Self Employed" data-ne="स्वरोजगार"
-          {% elif result.type == 'business' %} data-en="Business Owner" data-ne="व्यवसाय मालिक"
-          {% elif result.type == 'consultant' %} data-en="Consultant" data-ne="परामर्शदाता"
-          {% elif result.type == 'foreign_employment' %} data-en="Foreign Employment" data-ne="वैदेशिक रोजगारी"
-          {% elif result.type == 'pension' %} data-en="Pension Income" data-ne="निवृत्तिभरण (पेन्सन)"
-          {% endif %}
-        >{{ result.type }}</span>
-      </p>
-
-      <p>
-        <b data-en="Amount:" data-ne="रकम:">Amount:</b>
-        {{ result.amount }}
-      </p>
-
-      <p>
-        <b data-en="Tax Rate:" data-ne="कर दर:">Tax Rate:</b>
-        {{ result.rate }}%
-      </p>
-
-      <p>
-        <b data-en="Tax Amount:" data-ne="कर रकम:">Tax Amount:</b>
-        {{ result.tax_amount }}
-      </p>
-
-      <p>
-        <b data-en="Net Payment:" data-ne="शुद्ध भुक्तानी:">Net Payment:</b>
-        {{ result.net }}
-      </p>
-    </div>
-    {% endif %}
+    <div id="income-tax-result-container"></div>
   </div>
 </div>
+
+<div class="slab-reference">
+  <h2 data-en="FY 2080/81 — Income Tax Slabs (Nepal)" data-ne="आर्थिक वर्ष २०८०/८१ — आयकर स्ल्याब (नेपाल)">
+    आर्थिक वर्ष २०८०/८१ — आयकर स्ल्याब (नेपाल)
+  </h2>
+  <div class="slab-tables">
+    <div class="slab-table-card">
+      <h3 data-en="Single Individual" data-ne="एकल व्यक्ति">एकल व्यक्ति</h3>
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Taxable Income (NPR)" data-ne="करयोग्य आय (रू.)">करयोग्य आय (रू.)</th>
+            <th data-en="Tax Rate" data-ne="कर दर">कर दर</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-en="Up to 5,00,000" data-ne="५,००,००० सम्म">५,००,००० सम्म</td>
+            <td>1%</td>
+          </tr>
+          <tr>
+            <td data-en="5,00,001 – 7,00,000" data-ne="५,००,००१ – ७,००,०००">५,००,००१ – ७,००,०००</td>
+            <td>10%</td>
+          </tr>
+          <tr>
+            <td data-en="7,00,001 – 10,00,000" data-ne="७,००,००१ – १०,००,०००">७,००,००१ – १०,००,०००</td>
+            <td>20%</td>
+          </tr>
+          <tr>
+            <td data-en="10,00,001 – 20,00,000" data-ne="१०,००,००१ – २०,००,०००">१०,००,००१ – २०,००,०००</td>
+            <td>30%</td>
+          </tr>
+          <tr>
+            <td data-en="Above 20,00,000" data-ne="२०,००,००० भन्दा माथि">२०,००,००० भन्दा माथि</td>
+            <td>36%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slab-table-card">
+      <h3 data-en="Couple / Family" data-ne="दम्पती / परिवार">दम्पती / परिवार</h3>
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Taxable Income (NPR)" data-ne="करयोग्य आय (रू.)">करयोग्य आय (रू.)</th>
+            <th data-en="Tax Rate" data-ne="कर दर">कर दर</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-en="Up to 6,00,000" data-ne="६,००,००० सम्म">६,००,००० सम्म</td>
+            <td>1%</td>
+          </tr>
+          <tr>
+            <td data-en="6,00,001 – 8,00,000" data-ne="६,००,००१ – ८,००,०००">६,००,००१ – ८,००,०००</td>
+            <td>10%</td>
+          </tr>
+          <tr>
+            <td data-en="8,00,001 – 11,00,000" data-ne="८,००,००१ – ११,००,०००">८,००,००१ – ११,००,०००</td>
+            <td>20%</td>
+          </tr>
+          <tr>
+            <td data-en="11,00,001 – 20,00,000" data-ne="११,००,००१ – २०,००,०००">११,००,००१ – २०,००,०००</td>
+            <td>30%</td>
+          </tr>
+          <tr>
+            <td data-en="Above 20,00,000" data-ne="२०,००,००० भन्दा माथि">२०,००,००० भन्दा माथि</td>
+            <td>36%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="slab-note" data-en="* Additional 20% tax surcharge applies on income above NPR 50,00,000."
+    data-ne="* रू. ५०,००,००० भन्दा माथिको आयमा थप २०% कर अधिभार लागू हुन्छ।">
+    * रू. ५०,००,००० भन्दा माथिको आयमा थप २०% कर अधिभार लागू हुन्छ।
+  </p>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'calculators/income_tax.js' %}"></script>
 {% endblock %}
