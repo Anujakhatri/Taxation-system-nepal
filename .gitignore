@@ -10,3 +10,4 @@ __pycache__/
 .venv
 db.sqlite3
 .claude
+graphify-out
