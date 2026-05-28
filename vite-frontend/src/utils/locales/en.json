@@ -106,7 +106,8 @@
   "mobile_friendly": "Mobile Friendly",
   "device": "Access from any device - desktop, tablet, or smartphone at any time, anywhere.",
   "security": "Access from any device - desktop, tablet, or smartphone at any time, anywhere.",
-  "": "Your data is never stored. All calculations are done locally in your browser."
+  "data": "Your data is never stored. All calculations are done locally in your browser.",
+  "secure": "100% Secure"
 },
 
 "vat":{
@@ -115,4 +116,5 @@
   "view_info": "View Information",
   "calculate_tds": "Calculate tax deduction at source for various payments like rent, contracts, dividends, interest, etc."
 }
+
 }
