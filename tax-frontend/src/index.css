@@ -1,1 +1,33 @@
-@import "tailwindcss";
+/* GLOBAL CSS VARIABLES — from Django home.css */
+:root {
+    --primary-dark: #002D72;
+    --primary-light: #003893;
+    --primary-lighter: #0050b3;
+    --accent-teal: #d52027;
+    --accent-amber: #e5a913;
+    --bg-light: #f4f6f9;
+    --bg-surface: #ffffff;
+    --text-dark: #333333;
+    --text-muted: #555555;
+    --border-color: #e2e8f0;
+    --success: #28a745;
+    --warning: #ffc107;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+}
+
+html {
+    scroll-behavior: smooth;
+}

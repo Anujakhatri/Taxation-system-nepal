@@ -1,19 +1,19 @@
-import { useTranslation } from "react-i18next";
-import Buttons from "../assets/buttons/Buttons";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 const Dashboard_Bottom = () => {
     const { t } = useTranslation();
+
     return (
-        <div className="container mx-auto py-18 bg-[var(--primary-dark)] text-white text-center ">
-            <h1 className="font-bold text-4xl">
-                {t("tax_calculator.rdy_to_calculate")}
-            </h1>
-            <p className="text-sm text-[var(--bg-light)] mt-4">
-                {t("guideliness.description")}
-            </p>
-            <Buttons variant="accent" className="mt-6">
-                {t("guideliness.start_now")}
-            </Buttons>
-        </div>
+        <section className="cal-section">
+            <div className="cal-section-content">
+                <h2>{t('tax_calculator.rdy_to_calculate', 'Ready to Calculate Your Taxes?')}</h2>
+                <p>{t('guideliness.description', 'Start with our income tax calculator or explore our comprehensive tax guides.')}</p>
+                <button id="get-started-btn" className="cal-button">
+                    {t('guideliness.start_now', 'Get Started Now')}
+                </button>
+            </div>
+        </section>
     );
 };
 
