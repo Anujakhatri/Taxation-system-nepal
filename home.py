@@ -33,7 +33,7 @@ class EmployeeDetails:
 
     def input_employee_details(self):
         while True:
-            ##########################  Anuja Task ##########################"
+##########################  Anuja Task ##########################"
             print("Enter employee details:")
             name = input("Name: ")
             salary = float(input("Monthly Salary: "))
@@ -46,7 +46,7 @@ class EmployeeDetails:
                 pan_number = input("PAN Number: ")
             self.set_pan.add(pan_number)
 
-            ##########################  Anuska Task ##########################"
+##########################  Anuska Task ##########################"
             self.employee_records[name] = [salary, allowance, deductions, pan_number]
 create_table()
 
@@ -83,7 +83,9 @@ class EmployeeDetails:
             choice = input("Do you want to add more employee records? (yes/no): ")
             if choice.lower() != 'yes':
                 break
-    ####-------Anuska Task-----#####
+                
+                
+####-------Anuska Task-----#####
     def update_employee(self):
         print("\n--- Update Employee ---")
         pan_number = input("Enter PAN number of employee to update: ").strip()
@@ -166,12 +168,9 @@ class CalculateTax:
 
         return tax
 
-<<<<<<< HEAD
 
 ##########################  Asmita's Task ##########################"
-=======
 ##########################   Task ##########################"  
->>>>>>> anuska
 class TaxReport:
     def display_report(self, employee_records):
         print("\n-------------------TAXATION Report-------------------")
@@ -190,7 +189,6 @@ class TaxReport:
             tax_amount = CalculateTax.calculate_tax(taxable_income)
             final_salary = taxable_income - tax_amount
 
-<<<<<<< HEAD
             print(
                 f"{name}\t\t{salary}\t\t{allowance}\t\t{deductions}\t\t{pan_number}\t\t{tax_amount:.2f}\t\t{final_salary:.2f}")
 
@@ -203,6 +201,7 @@ report = TaxReport()
 report.display_report(emp_obj.employee_records)
 # *************** Task-1- Aishwarya *******************
 
+#*************** Task-1- Aishwarya *******************
 name = input("Enter your name: ")
 salary = int(input("Enter your monthly salary: "))
 
@@ -217,6 +216,7 @@ print(type(salary))
 
 # ******TASK 3 BY ANUSKA******#
 # Calculate tax using if statement
+#*************** Task-3- Anuska *******************
 if salary > 0:
     tax = salary * 0.10
     print("Tax amount is:", tax)
@@ -224,7 +224,6 @@ else:
     tax = 0
     print("Invalid salary! Tax cannot be calculated.")
 
-=======
                 # ------------------- Anuska Task -------------------
             # Highest taxpayer
             if tax_amount > highest_tax:
@@ -249,6 +248,9 @@ else:
         print(f"Employees per Tax Slab: {slab_count}")
       
 
+#*************** Task-4- Asmita *******************
+print("\n-------------------TAXATION Report-------------------")
+print("Employee Name\tEmployee Salary\tTax Amount")
 
 report = TaxReport()
 report.display_report(emp_obj.employee_records)
