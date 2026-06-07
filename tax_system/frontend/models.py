@@ -35,7 +35,7 @@ class CustomUser(AbstractUser):
 
     groups = models.ManyToManyField(
         'auth.Group',
-        related_name='custom_user_set',  
+        related_name='custom_user_set',
         blank=True,
     )
     user_permissions = models.ManyToManyField(
@@ -44,11 +44,10 @@ class CustomUser(AbstractUser):
         blank=True,
     )
 
-    objects = CustomUserManager()  
+    objects = CustomUserManager()
 
     USERNAME_FIELD  = 'email'
     REQUIRED_FIELDS = ['full_name']
 
     def __str__(self):
         return self.email
-    
