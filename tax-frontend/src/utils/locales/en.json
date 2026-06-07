@@ -3,19 +3,17 @@
     "welcome": "Welcome",
     "logout": "Logout"
   },
-
-"form": {
-  "name": "Name",
-  "email": "Email",
-  "msg": "Message",
-  "submit": "Submit",
-  "login": "Login",
-  "register": "Register",
-  "send_msg": "Send Message",
-  "msg_sent": "Message sent successfully!"
-},
-
-  "contact":{
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "msg": "Message",
+    "submit": "Submit",
+    "login": "Login",
+    "register": "Register",
+    "send_msg": "Send Message",
+    "msg_sent": "Message sent successfully!"
+  },
+  "contact": {
     "contact": "Contact",
     "contact_us": "Contact Us & Team",
     "our_team": "Our Team",
@@ -28,9 +26,8 @@
     "github": "Github",
     "get_in_touch": "Get in Touch"
   },
-
   "tax_calculator": {
-    "rdy_to_calculate":"Ready to calculate?",
+    "rdy_to_calculate": "Ready to calculate?",
     "tax_calculator": "Tax Calculator",
     "income_tax": "Income Tax",
     "income_tax_calculator": "Income Tax Calculator",
@@ -45,10 +42,9 @@
     "tax_info": "Nepal Tax Information",
     "corporate_tax": "Corporate Tax",
     "corporate_tax_calculator": "Corporate Tax Calculator",
-    "personal_tax": "Personal Tax", 
+    "personal_tax": "Personal Tax",
     "calculate_now": "Calculate Now"
   },
-
   "resources": {
     "income": "Income",
     "deductions": "Deductions",
@@ -69,50 +65,48 @@
     "tax_forms": "Tax Forms",
     "nepal_act_tax": "Nepal Tax Act",
     "tax_info_2025": "2025 Nepal Tax Information. Not affiliated with IRD."
-},
-
-"business":{
-  "business": "Business",
-  "general_business": "General Business",
-  "business_registration": "Business Registration",
-  "tax_compliance": "Tax Compliance",
-  "tax_incentives": "Tax Incentives",
-  "business_resources": "Business Resources",
-  "financial_services": "Financial Services",
-  "business_guidelines": "Business Guidelines",
-  "bank": "Bank / Telecom / Insurance",
-  "corporate_tax_rates": "Corporate Tax Rates — FY 2082/83",
-  "special_industries": "Special Industries (Hydroelectric, Construction, etc.)",
-  "registered_companies_rebate": "Registered Companies Rebate (As per conditions)",
-  "note": "Note: Registered Companies can avail maximum 5% rebate as per conditions.",
-  "listed_companies": "Listed Companies Rebate (Conditional)",
-  "latest_updates": "Calculate your business tax according to latest Nepal rates"
-},
-
-"guideliness":{
-  "start_now": "Start Now",
-  "description": "Get started with our income tax calculator or explore our comprehensive tax guidelines.",
-  "nepal_tax_structure": "Understand Nepal's Taxation System",
-  "nepal_tax_law": "Informational platform based on Nepal tax laws.",
-  "view_tax_guide": "View Tax Guide",
-  "compute_tax": "Compute your personal tax liability instantly. Supports all deductions and rebates.",
-  "corporate_tax_calculation": "Calculate corporate taxes with applicable rates for different types of industries.",
-  "tax_compliance_info": "Everything you need to know about tax compliance.",
-  "why_this_site": "Why This Site?",
-  "instant_res": "Instant Results",
-  "guide": "Get accurate calculations in seconds without complex forms or lengthy processes.",
-  "bilingual": "Bilingual",
-  "service": "Available in both English and Nepali for your convenience and clarity.",
-  "mobile_friendly": "Mobile Friendly",
-  "device": "Access from any device - desktop, tablet, or smartphone at any time, anywhere.",
-  "security": "Access from any device - desktop, tablet, or smartphone at any time, anywhere.",
-  "": "Your data is never stored. All calculations are done locally in your browser."
-},
-
-"vat":{
-  "vat_info": "VAT Information",
-  "vat_detail": "Details about VAT limits, registration processes, and compliance requirements",
-  "view_info": "View Information",
-  "calculate_tds": "Calculate tax deduction at source for various payments like rent, contracts, dividends, interest, etc."
-}
+  },
+  "business": {
+    "business": "Business",
+    "general_business": "General Business",
+    "business_registration": "Business Registration",
+    "tax_compliance": "Tax Compliance",
+    "tax_incentives": "Tax Incentives",
+    "business_resources": "Business Resources",
+    "financial_services": "Financial Services",
+    "business_guidelines": "Business Guidelines",
+    "bank": "Bank / Telecom / Insurance",
+    "corporate_tax_rates": "Corporate Tax Rates — FY 2082/83",
+    "special_industries": "Special Industries (Hydroelectric, Construction, etc.)",
+    "registered_companies_rebate": "Registered Companies Rebate (As per conditions)",
+    "note": "Note: Registered Companies can avail maximum 5% rebate as per conditions.",
+    "listed_companies": "Listed Companies Rebate (Conditional)",
+    "latest_updates": "Calculate your business tax according to latest Nepal rates"
+  },
+  "guideliness": {
+    "start_now": "Start Now",
+    "description": "Get started with our income tax calculator or explore our comprehensive tax guidelines.",
+    "nepal_tax_structure": "Understand Nepal's Taxation System",
+    "nepal_tax_law": "Informational platform based on Nepal tax laws.",
+    "view_tax_guide": "View Tax Guide",
+    "compute_tax": "Compute your personal tax liability instantly. Supports all deductions and rebates.",
+    "corporate_tax_calculation": "Calculate corporate taxes with applicable rates for different types of industries.",
+    "tax_compliance_info": "Everything you need to know about tax compliance.",
+    "why_this_site": "Why This Site?",
+    "instant_res": "Instant Results",
+    "guide": "Get accurate calculations in seconds without complex forms or lengthy processes.",
+    "bilingual": "Bilingual",
+    "service": "Available in both English and Nepali for your convenience and clarity.",
+    "mobile_friendly": "Mobile Friendly",
+    "device": "Access from any device - desktop, tablet, or smartphone at any time, anywhere.",
+    "security": "Access from any device - desktop, tablet, or smartphone at any time, anywhere.",
+    "data": "Your data is never stored. All calculations are done locally in your browser.",
+    "secure": "100% Secure"
+  },
+  "vat": {
+    "vat_info": "VAT Information",
+    "vat_detail": "Details about VAT limits, registration processes, and compliance requirements",
+    "view_info": "View Information",
+    "calculate_tds": "Calculate tax deduction at source for various payments like rent, contracts, dividends, interest, etc."
+  }
 }
