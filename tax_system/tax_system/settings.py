@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'frontend',
+    'rest_framework',
+    'tax_app',
 ]
 
 MIDDLEWARE = [
@@ -117,4 +119,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'frontend/static']
-AUTH_USER_MODEL = 'frontend.CustomUser'
+#AUTH_USER_MODEL = 'frontend.CustomUser'
+AUTH_USER_MODEL = 'tax_app.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
