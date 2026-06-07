@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Tax Report</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="{% url 'home' %}" class="logo">
+                <div class="logo-icon">₨</div>
+                <div class="logo-text">
+                    <h1>Nepal Tax Info</h1>
+                    <p>नेपाल कर जानकारी</p>
+                </div>
+            </a>
+            <nav>
+                <a href="{% url 'add_employee' %}">Add Employee</a>
+                <a href="{% url 'view_report' %}">View Report</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="features" style="padding: 2rem;">
+        <div class="features-container">
+            <h2 class="section-title">Employee Tax Report</h2>
+            <div class="features-grid">
+                <table style="width:100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: var(--primary-light); color: white;">
+                            <th style="padding: 12px; border: 1px solid #ddd;">Name</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">Salary</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">Allowance</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">Deductions</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">PAN</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">Tax Amount</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">Final Salary</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for emp in employees %}
+                        {% with taxable=emp.salary|floatformat:2|add:emp.allowance|floatformat:2|floatformat:2 %}
+                        {% with tax=0 %}
+                        {% if taxable <= 50000 %}
+                            {% with tax=taxable|floatformat:2|floatformat:2 %}
+                            {% endif %}
+                        {% endif %}
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">{{ emp.name }}</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">{{ emp.salary }}</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">{{ emp.allowance }}</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">{{ emp.deductions }}</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">{{ emp.pan_number }}</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                {% with taxable_income=emp.salary|add:emp.allowance|floatformat:2|floatformat:2|floatformat:2 %}
+                                    {% if taxable_income <= 50000 %}
+                                        {{ taxable_income|floatformat:2|mul:0.01 }}
+                                    {% elif taxable_income <=100000 %}
+                                        {{ taxable_income|floatformat:2|mul:0.10 }}
+                                    {% else %}
+                                        {{ taxable_income|floatformat:2|mul:0.20 }}
+                                    {% endif %}
+                                {% endwith %}
+                            </td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                {% with final_salary=emp.salary|add:emp.allowance|floatformat:2|floatformat:2|floatformat:2 %}
+                                    {% with tax_amount=0 %}
+                                    {% if final_salary <= 50000 %}
+                                        {{ final_salary|floatformat:2|floatformat:2|floatformat:2|floatformat:2 }}
+                                    {% endif %}
+                                    {% endwith %}
+                                {% endwith %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
